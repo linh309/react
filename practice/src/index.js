@@ -44,7 +44,19 @@ function Welcome(props){
     );
 }
 
-var elWelcome = <Welcome name='linh' country='Viet Nam'/>;
+class Welcome1 extends React.Component {
+    render(){
+        let that = this;        
+        return(
+            <div>
+                <h1>Welcome <span className='welcome-name'>{this.props.name}</span> from <span className='welcome-country'>{this.props.country}</span></h1>
+            </div>
+        )
+    }
+}
+
+//var elWelcome = <Welcome name='linh' country='Viet Nam'/>;
+var elWelcome = <Welcome1 name='linh' country='Viet Nam'/>;
 
 //ReactDOM.render(<Welcome />, document.getElementById("root"));
 ReactDOM.render(elWelcome, document.getElementById("root"));
