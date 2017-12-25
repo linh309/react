@@ -190,7 +190,7 @@ class Clock extends React.Component{
             numberOfSecond: this.state.numberOfSecond + parseInt(this.props.stepCount)
         });
     }
-
+ 
     render(){
         return (
             <div>
