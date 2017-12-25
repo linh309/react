@@ -159,6 +159,12 @@ import './index.css';
 
 
 
+//this function is also a component 
+function FormatDateTime (props){
+    return (        
+        <span className='header1'>{props.date.toLocaleTimeString()}</span>
+    );
+}
 
 //create clock component as class
 class Clock extends React.Component{
@@ -181,28 +187,37 @@ class Clock extends React.Component{
     }
 
     tick() {
-        this.setState({
-            date: new Date()
-        });
-
-        this.setState({
+        this.setState((prevState, props) => ({
             date: new Date(),
-            numberOfSecond: this.state.numberOfSecond + parseInt(this.props.stepCount)
-        });
+            numberOfSecond: prevState.numberOfSecond + parseInt(this.props.stepCount)
+        }));
     }
  
     render(){
         return (
             <div>
                 <h1>Hello guys! {this.props.name}</h1>
-                <p><b>Now is </b><span className='header1'>{this.state.date.toLocaleTimeString()}</span></p>
+                <p><b>Now is </b><FormatDateTime date={this.state.date} /></p>
                 <p><b>Number of seconds </b><span>{this.state.numberOfSecond}</span></p>
             </div>
         )
     }
 }
 
-ReactDOM.render(<Clock name='Linh' stepCount="1"/>, document.getElementById('root'));
+//display multiple clocks in one element
+function App(){
+    return (
+        <div>
+            <Clock name='Nguyen' stepCount="1"/>
+            <Clock name='Van' stepCount="2"/>
+            <Clock name='Linh' stepCount="3"/>
+        </div>
+    );
+}
+
+// ReactDOM.render(<Clock name='Linh' stepCount="1"/>, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById("root"));
 
 
 
