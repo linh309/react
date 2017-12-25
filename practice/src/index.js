@@ -164,7 +164,10 @@ import './index.css';
 class Clock extends React.Component{
     constructor(props){
         super(props);
-        this.state = {date: new Date()};
+        this.state = {
+            date: new Date(),
+            numberOfSecond: 0
+        };
     }
 
     componentDidMount() {
@@ -179,7 +182,12 @@ class Clock extends React.Component{
 
     tick() {
         this.setState({
-            date: new Date() 
+            date: new Date()
+        });
+
+        this.setState({
+            date: new Date(),
+            numberOfSecond: this.state.numberOfSecond + parseInt(this.props.stepCount)
         });
     }
 
@@ -188,12 +196,13 @@ class Clock extends React.Component{
             <div>
                 <h1>Hello guys! {this.props.name}</h1>
                 <p><b>Now is </b><span className='header1'>{this.state.date.toLocaleTimeString()}</span></p>
+                <p><b>Number of seconds </b><span>{this.state.numberOfSecond}</span></p>
             </div>
         )
     }
 }
 
-ReactDOM.render(<Clock name='Linh' />, document.getElementById('root'));
+ReactDOM.render(<Clock name='Linh' stepCount="1"/>, document.getElementById('root'));
 
 
 
