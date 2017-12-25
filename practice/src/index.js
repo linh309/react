@@ -228,40 +228,114 @@ import './index.css';
 
 
 //********************************************************Event Handling ********************************************************
-class Toggle extends React.Component{
+// class Toggle extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             isToggle: true
+//         };
+//         this.handleClick = this.handleClick.bind(this);
+//     }
+
+//     handleClick(name,date, event){
+//         // this.setState(prevState =>({
+
+//         // }));
+//         // this.setState({
+//         //     isToggle: false
+//         // });
+//         //debugger;
+//         this.setState(prevState=>({
+//             isToggle: !prevState.isToggle
+//         }));
+//     }
+
+//     render(){
+//         return (
+//             <button onClick={this.handleClick.bind(this,'linh',new Date())}>
+//                 {this.state.isToggle ? 'ON' : 'OFF'}
+//             </button>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<Toggle />,document.getElementById("root"));
+
+
+//********************************************************Event Handling ********************************************************
+
+
+
+
+//********************************************************Conditionally rendering ********************************************************
+function LoginButton(props){
+    return <button onClick={props.onClick}>Log in</button>
+}
+
+function LogoutButton(props){
+    return <button onClick={props.onClick}>Log out</button>
+}
+
+function UserGreeting(){
+    return <h1>Welcome to our land</h1>;
+}
+
+function GuestGreeting(){
+    return <h1>Please login</h1>;
+}
+
+function Greeting(props){
+    if (props.isLogged)
+        return <UserGreeting />;
+    else    
+        return <GuestGreeting />;
+}
+
+class LoginControl extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            isToggle: true
+            isLogged: false            
         };
-        this.handleClick = this.handleClick.bind(this);
+
+        //bind event
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleClick(name,date, event){
-        // this.setState(prevState =>({
-
-        // }));
-        // this.setState({
-        //     isToggle: false
-        // });
-        //debugger;
-        this.setState(prevState=>({
-            isToggle: !prevState.isToggle
-        }));
+    handleLogin(){
+        this.setState({
+            isLogged: true
+        });
     }
 
+    handleLogout(){
+        this.setState({
+            isLogged: false
+        });
+    }
+    
     render(){
+        const isLogged = this.state.isLogged;
+        let button = null;
+        if (isLogged){
+            button = <LogoutButton onClick={this.handleLogout} />
+        }
+        else{
+            button = <LoginButton onClick={this.handleLogin} />
+        }
         return (
-            <button onClick={this.handleClick.bind(this,'linh',new Date())}>
-                {this.state.isToggle ? 'ON' : 'OFF'}
-            </button>
+            <div>
+                <Greeting isLogged={this.state.isLogged} />
+                {button}
+            </div>
         );
     }
 }
 
-ReactDOM.render(<Toggle />,document.getElementById("root"));
+ReactDOM.render(<LoginControl />, document.getElementById("root"));
 
+//********************************************************Conditionally rendering ********************************************************
 
-//********************************************************Event Handling ********************************************************
 
 
