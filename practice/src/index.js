@@ -61,62 +61,144 @@ import './index.css';
 // //ReactDOM.render(<Welcome />, document.getElementById("root"));
 // ReactDOM.render(elWelcome, document.getElementById("root"));
 
-//create composing component
+//********************************************************create composing component ********************************************************
 
-//utility function 
-function formatDate(date) {
-    return date.toLocaleDateString();
-  }
+// //utility function 
+// function formatDate(date) {
+//     return date.toLocaleDateString();
+//   }
 
-//Create Avatar component
-function Avatar(props){
-    return (
-        <img className='avatar'
-            src={props.user.avatarUrl}
-            alt={props.user.name}
-        />
-    );
+// //Create Avatar component
+// function Avatar(props){
+//     return (
+//         <img className='avatar'
+//             src={props.user.avatarUrl}
+//             alt={props.user.name}
+//         />
+//     );
+// }
+
+// function UserInfo(props){
+//     return (
+//         <div className='UserInfo'>
+//             <Avatar user={props.user} />
+//             <div className='UserInfo-name'>
+//                 {props.user.name}
+//             </div>
+//         </div>
+//     );
+// }
+
+// //create comment component as function: It includes other components: Avatar + UserInfo
+// function Comment(props){
+//     return (
+//         <div className='comment'>
+//             <UserInfo user={props.author} />
+//             <div className='comment-text'>
+//                 {props.text}
+//             </div>
+//             <div className='comment-date'>
+//                 {formatDate(props.date)}
+//             </div>
+//         </div>
+//     );
+// }
+
+// const objComment = {
+//     author: {
+//         avatarUrl:  'http://placekitten.com/g/64/64',
+//         name: "Grafield"
+//     },
+//     text: "I like what i'm doing",
+//     date: new Date()
+// };
+
+// ReactDOM.render(
+//     <Comment
+//         author={objComment.author}
+//         text = {objComment.text}
+//         date = {objComment.date}
+//     />, 
+//  document.getElementById('root'));
+
+
+
+ //********************************************************create composing component ********************************************************
+
+
+
+//********************************************************State and lifecycle ********************************************************
+// function ClockFn(props){
+//     return (
+//         <p>{props.date.toLocaleTimeString()}</p>
+//     );
+// }
+
+// function tickFn(){
+//     ReactDOM.render(<ClockFn date={new Date()} />, document.getElementById("root"));
+// }
+
+// //create clock component as class
+// class Clock extends React.Component{
+//     render(){
+//         return (
+//             <div>
+//                 <h1>Hello guys!</h1>
+//                 <p><b>Now is </b><span className='header1'>{this.props.date.toLocaleTimeString()}</span></p>
+//             </div>
+//         )
+//     }
+// }
+
+// function tick(){
+//     ReactDOM.render(<Clock date={new Date()} />, document.getElementById("root"));
+// }
+
+// setInterval(tick, 1000);
+
+
+
+
+
+//create clock component as class
+class Clock extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+
+    componentDidMount() {
+        this.timerId = setInterval(
+            ()=> this.tick(),
+            1000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timerId);
+    }
+
+    tick() {
+        this.setState({
+            date: new Date()
+        });
+    }
+
+    render(){
+        return (
+            <div>
+                <h1>Hello guys! {this.props.name}</h1>
+                <p><b>Now is </b><span className='header1'>{this.state.date.toLocaleTimeString()}</span></p>
+            </div>
+        )
+    }
 }
 
-function UserInfo(props){
-    return (
-        <div className='UserInfo'>
-            <Avatar user={props.user} />
-            <div className='UserInfo-name'>
-                {props.user.name}
-            </div>
-        </div>
-    );
-}
+ReactDOM.render(<Clock name='Linh' />, document.getElementById('root'));
 
-//create comment component as function: It includes other components: Avatar + UserInfo
-function Comment(props){
-    return (
-        <div className='comment'>
-            <UserInfo user={props.author} />
-            <div className='comment-text'>
-                {props.text}
-            </div>
-            <div className='comment-date'>
-                {formatDate(props.date)}
-            </div>
-        </div>
-    );
-}
 
-const objComment = {
-    author: {
-        avatarUrl:  'http://placekitten.com/g/64/64',
-        name: "Grafield"
-    },
-    text: "I like what i'm doing",
-    date: new Date()
-};
 
-ReactDOM.render(
-    <Comment
-        author={objComment.author}
-        text = {objComment.text}
-        date = {objComment.date}
-    />, 
- document.getElementById('root'));
+
+
+//********************************************************State and lifecycle ********************************************************
+
+
