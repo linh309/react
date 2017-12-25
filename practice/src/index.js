@@ -237,14 +237,14 @@ class Toggle extends React.Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(){
+    handleClick(name,date, event){
         // this.setState(prevState =>({
 
         // }));
         // this.setState({
         //     isToggle: false
         // });
-
+        //debugger;
         this.setState(prevState=>({
             isToggle: !prevState.isToggle
         }));
@@ -252,7 +252,7 @@ class Toggle extends React.Component{
 
     render(){
         return (
-            <button onClick={this.handleClick}>
+            <button onClick={this.handleClick.bind(this,'linh',new Date())}>
                 {this.state.isToggle ? 'ON' : 'OFF'}
             </button>
         );
