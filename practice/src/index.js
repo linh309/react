@@ -160,69 +160,108 @@ import './index.css';
 
 
 //this function is also a component 
-function FormatDateTime (props){
-    return (        
-        <span className='header1'>{props.date.toLocaleTimeString()}</span>
-    );
-}
+// function FormatDateTime (props){
+//     return (        
+//         <span className='header1'>{props.date.toLocaleTimeString()}</span>
+//     );
+// }
 
-//create clock component as class
-class Clock extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            date: new Date(),
-            numberOfSecond: 0
-        };
-    }
+// //create clock component as class
+// class Clock extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             date: new Date(),
+//             numberOfSecond: 0
+//         };
+//     }
 
-    componentDidMount() {
-        this.timerId = setInterval(
-            ()=> this.tick(),
-            1000);
-    }
+//     componentDidMount() {
+//         this.timerId = setInterval(
+//             ()=> this.tick(),
+//             1000);
+//     }
 
-    componentWillUnmount(){
-        clearInterval(this.timerId);
-    }
+//     componentWillUnmount(){
+//         clearInterval(this.timerId);
+//     }
 
-    tick() {
-        this.setState((prevState, props) => ({
-            date: new Date(),
-            numberOfSecond: prevState.numberOfSecond + parseInt(this.props.stepCount)
-        }));
-    }
+//     tick() {
+//         this.setState((prevState, props) => ({
+//             date: new Date(),
+//             numberOfSecond: prevState.numberOfSecond + parseInt(this.props.stepCount)
+//         }));
+//     }
  
-    render(){
-        return (
-            <div>
-                <h1>Hello guys! {this.props.name}</h1>
-                <p><b>Now is </b><FormatDateTime date={this.state.date} /></p>
-                <p><b>Number of seconds </b><span>{this.state.numberOfSecond}</span></p>
-            </div>
-        )
-    }
-}
+//     render(){
+//         return (
+//             <div>
+//                 <h1>Hello guys! {this.props.name}</h1>
+//                 <p><b>Now is </b><FormatDateTime date={this.state.date} /></p>
+//                 <p><b>Number of seconds </b><span>{this.state.numberOfSecond}</span></p>
+//             </div>
+//         )
+//     }
+// }
 
-//display multiple clocks in one element
-function App(){
-    return (
-        <div>
-            <Clock name='Nguyen' stepCount="1"/>
-            <Clock name='Van' stepCount="2"/>
-            <Clock name='Linh' stepCount="3"/>
-        </div>
-    );
-}
+// //display multiple clocks in one element
+// function App(){
+//     return (
+//         <div>
+//             <Clock name='Nguyen' stepCount="1"/>
+//             <Clock name='Van' stepCount="2"/>
+//             <Clock name='Linh' stepCount="3"/>
+//         </div>
+//     );
+// }
 
-// ReactDOM.render(<Clock name='Linh' stepCount="1"/>, document.getElementById('root'));
+// // ReactDOM.render(<Clock name='Linh' stepCount="1"/>, document.getElementById('root'));
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// ReactDOM.render(<App />, document.getElementById("root"));
 
 
 
 
 
 //********************************************************State and lifecycle ********************************************************
+
+
+
+//********************************************************Event Handling ********************************************************
+class Toggle extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            isToggle: true
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(){
+        // this.setState(prevState =>({
+
+        // }));
+        // this.setState({
+        //     isToggle: false
+        // });
+
+        this.setState(prevState=>({
+            isToggle: !prevState.isToggle
+        }));
+    }
+
+    render(){
+        return (
+            <button onClick={this.handleClick}>
+                {this.state.isToggle ? 'ON' : 'OFF'}
+            </button>
+        );
+    }
+}
+
+ReactDOM.render(<Toggle />,document.getElementById("root"));
+
+
+//********************************************************Event Handling ********************************************************
 
 
