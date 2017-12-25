@@ -36,27 +36,87 @@ import './index.css';
 // setInterval(tick, 1000);
 
 
-function Welcome(props){    
+// function Welcome(props){    
+//     return (
+//         <div>
+//             <h1>Welcome <span className='welcome-name'>{props.name}</span> from <span className='welcome-country'>{props.country}</span></h1>
+//         </div>
+//     );
+// }
+
+// class Welcome1 extends React.Component {
+//     render(){
+//         let that = this;        
+//         return(
+//             <div>
+//                 <h1>Welcome <span className='welcome-name'>{this.props.name}</span> from <span className='welcome-country'>{this.props.country}</span></h1>
+//             </div>
+//         )
+//     }
+// }
+
+// //var elWelcome = <Welcome name='linh' country='Viet Nam'/>;
+// var elWelcome = <Welcome1 name='linh' country='Viet Nam'/>;
+
+// //ReactDOM.render(<Welcome />, document.getElementById("root"));
+// ReactDOM.render(elWelcome, document.getElementById("root"));
+
+//create composing component
+
+//utility function 
+function formatDate(date) {
+    return date.toLocaleDateString();
+  }
+
+//Create Avatar component
+function Avatar(props){
     return (
-        <div>
-            <h1>Welcome <span className='welcome-name'>{props.name}</span> from <span className='welcome-country'>{props.country}</span></h1>
+        <img className='avatar'
+            src={props.user.avatarUrl}
+            alt={props.user.name}
+        />
+    );
+}
+
+function UserInfo(props){
+    return (
+        <div className='UserInfo'>
+            <Avatar user={props.user} />
+            <div className='UserInfo-name'>
+                {props.user.name}
+            </div>
         </div>
     );
 }
 
-class Welcome1 extends React.Component {
-    render(){
-        let that = this;        
-        return(
-            <div>
-                <h1>Welcome <span className='welcome-name'>{this.props.name}</span> from <span className='welcome-country'>{this.props.country}</span></h1>
+//create comment component as function: It includes other components: Avatar + UserInfo
+function Comment(props){
+    return (
+        <div className='comment'>
+            <UserInfo user={props.author} />
+            <div className='comment-text'>
+                {props.text}
             </div>
-        )
-    }
+            <div className='comment-date'>
+                {formatDate(props.date)}
+            </div>
+        </div>
+    );
 }
 
-//var elWelcome = <Welcome name='linh' country='Viet Nam'/>;
-var elWelcome = <Welcome1 name='linh' country='Viet Nam'/>;
+const objComment = {
+    author: {
+        avatarUrl:  'http://placekitten.com/g/64/64',
+        name: "Grafield"
+    },
+    text: "I like what i'm doing",
+    date: new Date()
+};
 
-//ReactDOM.render(<Welcome />, document.getElementById("root"));
-ReactDOM.render(elWelcome, document.getElementById("root"));
+ReactDOM.render(
+    <Comment
+        author={objComment.author}
+        text = {objComment.text}
+        date = {objComment.date}
+    />, 
+ document.getElementById('root'));
