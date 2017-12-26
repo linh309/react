@@ -377,43 +377,105 @@ import './index.css';
 
 // ReactDOM.render(<NumberList numbers={arNumber}/>, document.getElementById("root"));
 
-function Menu(props) {
-    var leftMenu = (
-        <ul>
-            {props.menus.map((menu)=>
-                {return <li key={menu.id}>{menu.title}</li>})
-            }
-        </ul>);
-    var mainContent = (
-        <ul>
-            {props.menus.map((menu)=>
-                <li key={menu.id}>
-                    <h3>{menu.title}</h3>
-                    <p>{menu.content}</p>
-                </li>
-            )}
-        </ul>
-    );
+// function Menu(props) {
+//     var leftMenu = (
+//         <ul>
+//             {props.menus.map((menu)=>
+//                 {return <li key={menu.id}>{menu.title}</li>})
+//             }
+//         </ul>);
+//     var mainContent = (
+//         <ul>
+//             {props.menus.map((menu)=>
+//                 <li key={menu.id}>
+//                     <h3>{menu.title}</h3>
+//                     <p>{menu.content}</p>
+//                 </li>
+//             )}
+//         </ul>
+//     );
     
 
 
-    return (
-        <div>
-            {leftMenu}
-            <hr />
-            {mainContent}
-        </div>
-    );
-}
+//     return (
+//         <div>
+//             {leftMenu}
+//             <hr />
+//             {mainContent}
+//         </div>
+//     );
+// }
 
-const menus = [ {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-{id: 2, title: 'Installation', content: 'You can install React from npm.'}];
+// const menus = [ {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+// {id: 2, title: 'Installation', content: 'You can install React from npm.'}];
 
-ReactDOM.render(<Menu menus={menus}/>,document.getElementById("root"))
+// ReactDOM.render(<Menu menus={menus}/>,document.getElementById("root"))
 
 
 
 //********************************************************Lists and Keys ********************************************************
+
+
+
+//********************************************************Form And Inputs ********************************************************
+
+class NameForm extends React.Component{
+    constructor(props){
+        super(props);            
+        this.state = {
+            value: 'coconut',
+            isGoing: false
+        };        
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleSubmit(ev){
+        console.log(this.state.value);
+        ev.preventDefault();
+    }
+
+    handleChange(e){
+        this.setState({
+            value: e.target.value
+        });
+
+        {/* <form onSubmit={this.handleSubmit}>
+                <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="grapefruit">Grapefruit</option>
+                    <option value="lime">Lime</option>
+                    <option value="coconut">Coconut</option>
+                    <option value="mango">Mango</option>
+                </select>
+
+                <input type="submit" value="submit" />
+            </form> 
+        */}
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input type='checkbox' name="isGoing" value={this.state.isGoing} onChange={this.handleInputChange} />
+            </form>                
+        );        
+    }
+}
+
+ReactDOM.render(<NameForm />,document.getElementById("root"))
+
+//********************************************************Form And Inputs ********************************************************
 
 
 
