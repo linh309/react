@@ -268,72 +268,77 @@ import './index.css';
 
 
 //********************************************************Conditionally rendering ********************************************************
-function LoginButton(props){
-    return <button onClick={props.onClick}>Log in</button>
-}
 
-function LogoutButton(props){
-    return <button onClick={props.onClick}>Log out</button>
-}
+// function LoginButton(props){
+//     return <button onClick={props.onClick}>Log in</button>
+// }
 
-function UserGreeting(){
-    return <h1>Welcome to our land</h1>;
-}
+// function LogoutButton(props){
+//     return <button onClick={props.onClick}>Log out</button>
+// }
 
-function GuestGreeting(){
-    return <h1>Please login</h1>;
-}
+// function UserGreeting(){
+//     return <h1>Welcome to our land</h1>;
+// }
 
-function Greeting(props){
-    if (props.isLogged)
-        return <UserGreeting />;
-    else    
-        return <GuestGreeting />;
-}
+// function GuestGreeting(){
+//     return <h1>Please login</h1>;
+// }
 
-class LoginControl extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            isLogged: false            
-        };
+// function Greeting(props){
+//     if (props.isLogged)
+//         return <UserGreeting />;
+//     else    
+//         return <GuestGreeting />;
+// }
 
-        //bind event
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
-    }
+// class LoginControl extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             isLogged: false            
+//         };
 
-    handleLogin(){
-        this.setState({
-            isLogged: true
-        });
-    }
+//         //bind event
+//         this.handleLogin = this.handleLogin.bind(this);
+//         this.handleLogout = this.handleLogout.bind(this);
+//     }
 
-    handleLogout(){
-        this.setState({
-            isLogged: false
-        });
-    }
+//     handleLogin(){
+//         this.setState({
+//             isLogged: true
+//         });
+//     }
+
+//     handleLogout(){
+//         this.setState({
+//             isLogged: false
+//         });
+//     }
     
-    render(){
-        const isLogged = this.state.isLogged;
-        let button = null;
-        if (isLogged){
-            button = <LogoutButton onClick={this.handleLogout} />
-        }
-        else{
-            button = <LoginButton onClick={this.handleLogin} />
-        }
-        return (
-            <div>
-                <Greeting isLogged={this.state.isLogged} />
-                {button}
-            </div>
-        );
-    }
-}
+//     render(){
+//         const isLogged = this.state.isLogged;
+//         let button = isLogged
+//                         ? <LogoutButton onClick={this.handleLogout} />
+//                         : <LoginButton onClick={this.handleLogin} />;
 
-ReactDOM.render(<LoginControl />, document.getElementById("root"));
+//         // if (isLogged){
+//         //     button = <LogoutButton onClick={this.handleLogout} />
+//         // }
+//         // else{
+//         //     button = <LoginButton onClick={this.handleLogin} />
+//         // }
+
+//         return (
+//             <div>
+//                 <Greeting isLogged={this.state.isLogged} />
+//                 {button}
+//             </div>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<LoginControl />, document.getElementById("root"));
 
 //********************************************************Conditionally rendering ********************************************************
 
