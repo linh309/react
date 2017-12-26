@@ -344,3 +344,76 @@ import './index.css';
 
 
 
+
+//********************************************************Lists and Keys ********************************************************
+
+//use map to create a new array by calling a function for every element
+// var arNumber = [1,2,3,4,5];
+// var doubled = arNumber.map(num=>{return num*3;});
+// var listNumber = arNumber.map(num => {
+//     return <li>{num*2}</li>
+// });
+
+// const arNumber = [1,2,3,4,5];
+
+// //create list item of <li>
+// function ListItem(props){
+//     return <li>{props.value}</li>
+// }
+
+// function NumberList(props){
+//     //const numbers = props.numbers.map(num=>{ return <li key={num.toString()}>{num}</li>})
+
+//     // const numbers = props.numbers.map(num=>{
+//     //     return <ListItem key={num.toString()} value={num} />
+//     // });
+
+//     const numbers = props.numbers.map((num) => {
+//         return <ListItem key={num.toString()} value={num} />;
+//     });
+
+//     return <ul>{numbers}</ul>;
+// }
+
+// ReactDOM.render(<NumberList numbers={arNumber}/>, document.getElementById("root"));
+
+function Menu(props) {
+    var leftMenu = (
+        <ul>
+            {props.menus.map((menu)=>
+                {return <li key={menu.id}>{menu.title}</li>})
+            }
+        </ul>);
+    var mainContent = (
+        <ul>
+            {props.menus.map((menu)=>
+                <li key={menu.id}>
+                    <h3>{menu.title}</h3>
+                    <p>{menu.content}</p>
+                </li>
+            )}
+        </ul>
+    );
+    
+
+
+    return (
+        <div>
+            {leftMenu}
+            <hr />
+            {mainContent}
+        </div>
+    );
+}
+
+const menus = [ {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+{id: 2, title: 'Installation', content: 'You can install React from npm.'}];
+
+ReactDOM.render(<Menu menus={menus}/>,document.getElementById("root"))
+
+
+
+//********************************************************Lists and Keys ********************************************************
+
+
+
