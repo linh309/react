@@ -419,63 +419,161 @@ import './index.css';
 
 //********************************************************Form And Inputs ********************************************************
 
-class NameForm extends React.Component{
-    constructor(props){
-        super(props);            
-        this.state = {
-            value: 'coconut',
-            isGoing: false
-        };        
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
+// class NameForm extends React.Component{
+//     constructor(props){
+//         super(props);            
+//         this.state = {
+//             value: 'coconut',
+//             isGoing: false
+//         };        
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleInputChange = this.handleInputChange.bind(this);
+//     }
 
-    handleSubmit(ev){
-        console.log(this.state.value);
-        ev.preventDefault();
-    }
+//     handleSubmit(ev){
+//         console.log(this.state.value);
+//         ev.preventDefault();
+//     }
 
-    handleChange(e){
-        this.setState({
-            value: e.target.value
-        });
+//     handleChange(e){
+//         this.setState({
+//             value: e.target.value
+//         });
 
-        {/* <form onSubmit={this.handleSubmit}>
-                <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="grapefruit">Grapefruit</option>
-                    <option value="lime">Lime</option>
-                    <option value="coconut">Coconut</option>
-                    <option value="mango">Mango</option>
-                </select>
+//         {/* <form onSubmit={this.handleSubmit}>
+//                 <select value={this.state.value} onChange={this.handleChange}>
+//                     <option value="grapefruit">Grapefruit</option>
+//                     <option value="lime">Lime</option>
+//                     <option value="coconut">Coconut</option>
+//                     <option value="mango">Mango</option>
+//                 </select>
 
-                <input type="submit" value="submit" />
-            </form> 
-        */}
-    }
+//                 <input type="submit" value="submit" />
+//             </form> 
+//         */}
+//     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+//     handleInputChange(event) {
+//         const target = event.target;
+//         const value = target.type === 'checkbox' ? target.checked : target.value;
+//         const name = target.name;
     
-        this.setState({
-          [name]: value
-        });
-      }
+//         this.setState({
+//           [name]: value
+//         });
+//       }
 
-    render() {
+//     render() {
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <input type='checkbox' name="isGoing" value={this.state.isGoing} onChange={this.handleInputChange} />
+//             </form>                
+//         );        
+//     }
+// }
+
+// ReactDOM.render(<NameForm />,document.getElementById("root"))
+
+//********************************************************Form And Inputs ********************************************************
+
+
+//********************************************************Lifting state up********************************************************
+function toCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+  
+function toFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+function tryConvert(temperature, convert) {
+    const input = parseFloat(temperature);
+    if (Number.isNaN(input)) {
+      return '';
+    }
+    const output = convert(input);
+    const rounded = Math.round(output * 1000) / 1000;
+    return rounded.toString();
+  }
+
+function BoilingVerdict(props){
+    if (props.celcious>=100)
+        return <p>The water would boil</p>;
+    else
+        return <p>The water would not boil</p>;
+}
+
+const scaleNames={
+    c: "Celsius",
+    f: "Fahrenheit"
+};
+
+class TemperatureInput extends React.Component{
+    constructor(props){
+        super(props);
+        this.changeTemperature = this.changeTemperature.bind(this);
+    }
+
+    changeTemperature(e){
+        this.props.onTemperatureChange(e.target.value);
+    }
+
+    render(){
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type='checkbox' name="isGoing" value={this.state.isGoing} onChange={this.handleInputChange} />
-            </form>                
-        );        
+            <fieldset>
+                <legend>Enter temperature in {scaleNames[this.props.scale]}: </legend>
+                <input value={this.props.temperature} onChange={this.changeTemperature} />                
+            </fieldset>
+        );
     }
 }
 
-ReactDOM.render(<NameForm />,document.getElementById("root"))
+class Calculator extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            temperature: '',
+            scale: 'c'
+        };        
+        this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+        this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    }
 
-//********************************************************Form And Inputs ********************************************************
+    handleCelsiusChange(temperature){
+        this.setState({scale: 'c',temperature});
+    }
+
+    handleFahrenheitChange(temperature){
+        this.setState({'scale': 'f', temperature});
+    }
+
+    render(){
+        const scale = this.state.scale;
+        const temperature = this.state.temperature;
+        const celcious = scale ==='f' ? tryConvert(temperature, toCelsius):temperature;
+        const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+        return (
+            <div>
+                <TemperatureInput 
+                    scale='c'
+                    temperature={celcious}
+                    onTemperatureChange={this.handleCelsiusChange}/>
+                <TemperatureInput 
+                    scale='f'
+                    temperature={fahrenheit}
+                    onTemperatureChange={this.handleFahrenheitChange}/>
+                
+                <BoilingVerdict celcious={parseFloat(celcious)} />
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<Calculator />,document.getElementById("root"))
+
+//********************************************************Lifting state up********************************************************
 
 
 
