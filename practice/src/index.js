@@ -529,15 +529,15 @@ class TemperatureInput extends React.Component{
     }
 }
 
-class Calculator extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            temperature: '',
-            scale: 'c'
-        };        
-        this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
-        this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+function WelcomDialog(){
+    return (
+        <FancyBorder color='blue'>
+            <h1 className='Dialog-title'>Welcome</h1>
+            <p className='Dialog-message'>
+                Thanks for visiting our land
+            </p>
+        </FancyBorder>
+    );
     }
 
     handleCelsiusChange(temperature){
