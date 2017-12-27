@@ -713,20 +713,20 @@ import './index.css';
 // ReactDOM.render(<comment.icon icontype="special"/>, document.getElementById("root"));
 
 
-function Comment(props){
-    return (
-        <div>
-            {props.children}
-        </div>
-    );
-}
+// function Comment(props){
+//     return (
+//         <div>
+//             {props.children}
+//         </div>
+//     );
+// }
 
-var userComment =   <Comment>
-                        <h1>User's comment</h1>
-                        <p>It was such greating thing.</p>
-                    </Comment>;
+// var userComment =   <Comment>
+//                         <h1>User's comment</h1>
+//                         <p>It was such greating thing.</p>
+//                     </Comment>;
 
-ReactDOM.render(userComment, document.getElementById("root"));
+// ReactDOM.render(userComment, document.getElementById("root"));
 
 //********************************************************JSX in depth********************************************************
 
