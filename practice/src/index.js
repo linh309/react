@@ -734,47 +734,46 @@ import './index.css';
 
 //********************************************************Refs and DOM********************************************************
 //Adding a ref to a DOM element
-// class CustomTextInput  extends React.Component{
-//     constructor(props){
-//         super(props);
-//         this.focusTextInput = this.focusTextInput.bind(this);
-//     }
+class CustomTextInput  extends React.Component{
+    constructor(props){
+        super(props);
+        this.focusTextInput = this.focusTextInput.bind(this);
+    }
 
-//     focusTextInput(){
-//         //reference to textbox and use focus function
-//         this.textInput.focus();
-//     }
+    focusTextInput(){
+        //reference to textbox and use focus function
+        this.textInput.focus();
+    }
 
-//     confirmAutoFocused(){
-//         console.log('Focused');
-//     }
+    confirmAutoFocused(){
+        console.log('Focused');
+    }
 
-//     render(){
-//         return (
-//             <div>
-//                 <input type='text' ref={(input)=>{this.textInput = input}} />
-//                 <input type='button' value='focus on textbox' onClick={this.focusTextInput} />
-//             </div>
-//         )
-//     }
-// }
+    render(){
+        return (
+            <div>
+                <input type='text' ref={(input)=>{this.textInput = input}} />
+                <input type='button' value='focus on textbox' onClick={this.focusTextInput} />
+            </div>
+        )
+    }
+}
 
-// class AutoFocusTextInput extends React.Component{
-//     componentDidMount(){
-//         // debugger;
-//         this.textInput.focusTextInput();
-//         this.textInput.confirmAutoFocused();
-//     }
+class AutoFocusTextInput extends React.Component{
+    componentDidMount(){
+        // debugger;
+        this.textInput.focusTextInput();
+        this.textInput.confirmAutoFocused();
+    }
 
-//     render(){
-//         return (
-//             <CustomTextInput ref={(input) => { this.textInput = input; }} />
-//         );
-//     }
-// }
+    render(){
+        return (
+            <CustomTextInput ref={(input) => { this.textInput = input; }} />
+        );
+    }
+}
 
-// //ReactDOM.render(<CustomTextInput />, document.getElementById("root"));
-// ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
+ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
 
 
 //********************************************************Refs and DOM********************************************************
