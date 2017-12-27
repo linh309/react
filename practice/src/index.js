@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
@@ -479,101 +480,255 @@ import './index.css';
 
 
 //********************************************************Lifting state up********************************************************
-function toCelsius(fahrenheit) {
-    return (fahrenheit - 32) * 5 / 9;
-}
+// function toCelsius(fahrenheit) {
+//     return (fahrenheit - 32) * 5 / 9;
+// }
   
-function toFahrenheit(celsius) {
-    return (celsius * 9 / 5) + 32;
-}
+// function toFahrenheit(celsius) {
+//     return (celsius * 9 / 5) + 32;
+// }
 
-function tryConvert(temperature, convert) {
-    const input = parseFloat(temperature);
-    if (Number.isNaN(input)) {
-      return '';
-    }
-    const output = convert(input);
-    const rounded = Math.round(output * 1000) / 1000;
-    return rounded.toString();
-  }
+// function tryConvert(temperature, convert) {
+//     const input = parseFloat(temperature);
+//     if (Number.isNaN(input)) {
+//       return '';
+//     }
+//     const output = convert(input);
+//     const rounded = Math.round(output * 1000) / 1000;
+//     return rounded.toString();
+//   }
 
-function BoilingVerdict(props){
-    if (props.celcious>=100)
-        return <p>The water would boil</p>;
-    else
-        return <p>The water would not boil</p>;
-}
+// function BoilingVerdict(props){
+//     if (props.celcious>=100)
+//         return <p>The water would boil</p>;
+//     else
+//         return <p>The water would not boil</p>;
+// }
 
-const scaleNames={
-    c: "Celsius",
-    f: "Fahrenheit"
-};
+// const scaleNames={
+//     c: "Celsius",
+//     f: "Fahrenheit"
+// };
 
-class TemperatureInput extends React.Component{
-    constructor(props){
-        super(props);
-        this.changeTemperature = this.changeTemperature.bind(this);
-    }
+// class TemperatureInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.changeTemperature = this.changeTemperature.bind(this);
+//     }
 
-    changeTemperature(e){
-        this.props.onTemperatureChange(e.target.value);
-    }
+//     changeTemperature(e){
+//         this.props.onTemperatureChange(e.target.value);
+//     }
 
-    render(){
-        return (
-            <fieldset>
-                <legend>Enter temperature in {scaleNames[this.props.scale]}: </legend>
-                <input value={this.props.temperature} onChange={this.changeTemperature} />                
-            </fieldset>
-        );
-    }
-}
+//     render(){
+//         return (
+//             <fieldset>
+//                 <legend>Enter temperature in {scaleNames[this.props.scale]}: </legend>
+//                 <input value={this.props.temperature} onChange={this.changeTemperature} />                
+//             </fieldset>
+//         );
+//     }
+// }
 
-function WelcomDialog(){
-    return (
-        <FancyBorder color='blue'>
-            <h1 className='Dialog-title'>Welcome</h1>
-            <p className='Dialog-message'>
-                Thanks for visiting our land
-            </p>
-        </FancyBorder>
-    );
-    }
+// class Calculator extends React.Component {
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             temperature: '',
+//             scale: 'c'
+//         };        
+//         this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+//         this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+//     }
 
-    handleCelsiusChange(temperature){
-        this.setState({scale: 'c',temperature});
-    }
+//     handleCelsiusChange(temperature){
+//         this.setState({scale: 'c',temperature});
+//     }
 
-    handleFahrenheitChange(temperature){
-        this.setState({'scale': 'f', temperature});
-    }
+//     handleFahrenheitChange(temperature){
+//         this.setState({'scale': 'f', temperature});
+//     }
 
-    render(){
-        const scale = this.state.scale;
-        const temperature = this.state.temperature;
-        const celcious = scale ==='f' ? tryConvert(temperature, toCelsius):temperature;
-        const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+//     render(){
+//         const scale = this.state.scale;
+//         const temperature = this.state.temperature;
+//         const celcious = scale ==='f' ? tryConvert(temperature, toCelsius):temperature;
+//         const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
 
-        return (
-            <div>
-                <TemperatureInput 
-                    scale='c'
-                    temperature={celcious}
-                    onTemperatureChange={this.handleCelsiusChange}/>
-                <TemperatureInput 
-                    scale='f'
-                    temperature={fahrenheit}
-                    onTemperatureChange={this.handleFahrenheitChange}/>
+//         return (
+//             <div>
+//                 <TemperatureInput 
+//                     scale='c'
+//                     temperature={celcious}
+//                     onTemperatureChange={this.handleCelsiusChange}/>
+//                 <TemperatureInput 
+//                     scale='f'
+//                     temperature={fahrenheit}
+//                     onTemperatureChange={this.handleFahrenheitChange}/>
                 
-                <BoilingVerdict celcious={parseFloat(celcious)} />
-            </div>
-        );
-    }
-}
+//                 <BoilingVerdict celcious={parseFloat(celcious)} />
+//             </div>
+//         );
+//     }
+// }
 
-ReactDOM.render(<Calculator />,document.getElementById("root"));
+// ReactDOM.render(<Calculator />,document.getElementById("root"));
 
 //********************************************************Lifting state up********************************************************
+
+
+
+//********************************************************Composition and Inheritance********************************************************
+// function FancyBorder(props){
+//     return (
+//         <div className={'FancyBorder FancyBorder-'+props.color}>
+//             {props.children}
+//         </div>
+//     );
+// }
+
+// function WelcomDialog(){
+//     return (
+//         <FancyBorder color='blue'>
+//             <h1 className='Dialog-title'>Welcome</h1>
+//             <p className='Dialog-message'>
+//                 Thanks for visiting our land
+//             </p>
+//         </FancyBorder>
+//     );
+// }
+
+// function utilUppercase(value){
+//     return value.toString().toUpperCase();
+// }
+
+// function Contacts(props) {
+//     return (
+//         <div className='Contacts'>{props.transform(props.content.contact)}</div>
+//     );
+// }
+
+// function Chat(props){
+//     return (
+//         <div className='Chat'>{props.transform(props.content.chat)}</div>
+//     );
+// }
+
+// function SplitPanel(props){
+//     return (
+//         <div className='SplitPane'>
+//             <div className='SplitPane-left'>
+//                 {props.left}                
+//             </div>
+//             <div className='SplitPane-right'>
+//                 {props.right}
+//             </div>
+//         </div>
+//     );
+// }
+
+// function App(){
+//     return (
+//         <SplitPanel
+//             left={
+//                 <Contacts content={{contact: "Linh"}} transform={utilUppercase} />
+//             }
+//             right={
+//                 <Chat content={{chat: "Hello world!"}}  transform={utilUppercase}/>
+//             }            
+//          />
+//     );
+// }
+
+
+// function FancyBorder(props){
+//     return (
+//         <div className={'FancyBorder FancyBorder-'+props.color}>
+//             {props.children}
+//         </div>
+//     );
+// }
+
+// function Dialog(props){
+//     return (
+//         <FancyBorder color='blue'>
+//             <h1 className='Dialog-title'>{props.title}</h1>
+//             <p className='Dialog-message'>
+//                 {props.message}
+//             </p>
+//             {props.children}
+//         </FancyBorder>
+//     );
+// }
+
+// class SignUpDialog extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             login: ''
+//         };
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSignUp = this.handleSignUp.bind(this);
+//     }
+
+//     handleChange(e){
+//         this.setState({login: e.target.value});
+//     }
+
+//     handleSignUp(){
+//         alert(`Welcome ${this.state.login} to the hell!`);
+//     }
+
+//     render(){
+//         return (
+//             <Dialog title='Learning'
+//                     message='singup to start using stuff'>
+//                 <input type='text' value={this.state.login} onChange={this.handleChange}/>
+//                 <button onClick={this.handleSignUp}>
+//                     Sign me up!
+//                 </button>
+//             </Dialog>
+//         );
+//     }
+// }
+
+
+
+// ReactDOM.render(<SignUpDialog />, document.getElementById("root"));
+
+
+//********************************************************Composition and Inheritance********************************************************
+
+
+
+//********************************************************JSX in depth********************************************************
+// const comment = {
+//     content: <div>It's just a simple comment</div>,
+//     text: <input type='text' value='put comment here' />,
+//     icon: function Icon(props){
+//         return <p className='icon'>{props.icontype}</p>
+//     }
+// };
+
+// ReactDOM.render(<comment.icon icontype="special"/>, document.getElementById("root"));
+
+
+function Comment(props){
+    return (
+        <div>
+            {props.children}
+        </div>
+    );
+}
+
+var userComment =   <Comment>
+                        <h1>User's comment</h1>
+                        <p>It was such greating thing.</p>
+                    </Comment>;
+
+ReactDOM.render(userComment, document.getElementById("root"));
+
+//********************************************************JSX in depth********************************************************
 
 
 
