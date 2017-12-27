@@ -732,3 +732,83 @@ import './index.css';
 
 
 
+//********************************************************Refs and DOM********************************************************
+//Adding a ref to a DOM element
+// class CustomTextInput  extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.focusTextInput = this.focusTextInput.bind(this);
+//     }
+
+//     focusTextInput(){
+//         //reference to textbox and use focus function
+//         this.textInput.focus();
+//     }
+
+//     confirmAutoFocused(){
+//         console.log('Focused');
+//     }
+
+//     render(){
+//         return (
+//             <div>
+//                 <input type='text' ref={(input)=>{this.textInput = input}} />
+//                 <input type='button' value='focus on textbox' onClick={this.focusTextInput} />
+//             </div>
+//         )
+//     }
+// }
+
+// class AutoFocusTextInput extends React.Component{
+//     componentDidMount(){
+//         // debugger;
+//         this.textInput.focusTextInput();
+//         this.textInput.confirmAutoFocused();
+//     }
+
+//     render(){
+//         return (
+//             <CustomTextInput ref={(input) => { this.textInput = input; }} />
+//         );
+//     }
+// }
+
+// //ReactDOM.render(<CustomTextInput />, document.getElementById("root"));
+// ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
+
+
+//********************************************************Refs and DOM********************************************************
+
+
+//********************************************************Help********************************************************
+
+// var text = 'Google is a search engine service, google is also an engine for a lot of other services and tools';
+// //Google is a search engine service, google is also an engine for a lot of other services and tools
+// function findWord(text, input){
+//     var inputLength = input.length;
+//     var inputFirstCharacter = input[0].toLowerCase();
+//     var searchInput='';
+
+//     for(var i =0;i<text.length;i++){
+//         if (text[i].toLowerCase()===inputFirstCharacter){
+//             //create a word from current position to current position + inputLength;
+//             searchInput = ''
+//             for(var j=i;j<i+inputLength;j++) {
+//                 if (j <= text.length-1){
+//                     searchInput+=text[j];
+//                 }
+//             }
+//             if (searchInput.toLocaleLowerCase()===input.toLocaleLowerCase()){
+//                 console.log(`i=${i}; j=${j}, i + inputLength=${i + inputLength}`);   
+//                 i = i + inputLength - 1;
+//             }
+//         }
+//     }
+// }
+
+// findWord(text,'o');
+
+//********************************************************Help********************************************************
+
+
+
