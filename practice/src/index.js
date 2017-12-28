@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import $ from 'jquery';
 
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
@@ -949,84 +950,159 @@ import './index.css';
 
 
 //********************************************************Optimize Performance********************************************************
-class RatRace extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            'number1': 1,
-            'number2': 1,
-            'number3': 1
-        };
-        this.race = this.race.bind(this);
-    }
+// class RatRace extends React.Component {
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             'number1': 1,
+//             'number2': 1,
+//             'number3': 1
+//         };
+//         this.race = this.race.bind(this);
+//     }
 
-    race(e){
-        let number = e.target.dataset.number;        
+//     race(e){
+//         let number = e.target.dataset.number;        
 
-        if (number==='number1'){
-            this.setState(prevState=>({
-                number1: prevState[number] + 1
-            }));        
-        }
-        else if (number==='number2'){
-            this.setState(prevState=>({
-                number2: prevState[number] + 1
-            }));        
-        }
-        else{
-            this.setState(prevState=>({
-                number3: prevState[number] + 1
-            }));        
-        }
-    }
+//         if (number==='number1'){
+//             this.setState(prevState=>({
+//                 number1: prevState[number] + 1
+//             }));        
+//         }
+//         else if (number==='number2'){
+//             this.setState(prevState=>({
+//                 number2: prevState[number] + 1
+//             }));        
+//         }
+//         else{
+//             this.setState(prevState=>({
+//                 number3: prevState[number] + 1
+//             }));        
+//         }
+//     }
 
-    //compnent lifecycle event
-    shouldComponentUpdate(nextProps, nextState){
-        if (this.state.number1!=nextState.number1){
-            return true;            
-        }
-        if (this.state.number2!=nextState.number2){
-            return true;            
-        }
-        return false;
-    }
+//     //compnent lifecycle event
+//     shouldComponentUpdate(nextProps, nextState){
+//         if (this.state.number1!=nextState.number1){
+//             return true;            
+//         }
+//         if (this.state.number2!=nextState.number2){
+//             return true;            
+//         }
+//         return false;
+//     }
 
-    render(){
-        return (            
-            <table>
-                <thead>
-                    <tr>
-                        <td>#1</td>
-                        <td>#2</td>
-                        <td>#3</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{this.state.number1}</td>
-                        <td>{this.state.number2}</td>
-                        <td>{this.state.number3}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" data-number="number1" onClick={this.race} value='Race #1'/>
-                        </td>
-                        <td>
-                            <input type="button" data-number="number2" onClick={this.race} value='Race #2' />
-                        </td>
-                        <td>
-                            <input type="button" data-number="number3" onClick={this.race} value='Race #3' />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>            
-        )
-    }
-}
+//     render(){
+//         return (            
+//             <table>
+//                 <thead>
+//                     <tr>
+//                         <td>#1</td>
+//                         <td>#2</td>
+//                         <td>#3</td>
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     <tr>
+//                         <td>{this.state.number1}</td>
+//                         <td>{this.state.number2}</td>
+//                         <td>{this.state.number3}</td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                             <input type="button" data-number="number1" onClick={this.race} value='Race #1'/>
+//                         </td>
+//                         <td>
+//                             <input type="button" data-number="number2" onClick={this.race} value='Race #2' />
+//                         </td>
+//                         <td>
+//                             <input type="button" data-number="number3" onClick={this.race} value='Race #3' />
+//                         </td>
+//                     </tr>
+//                 </tbody>
+//             </table>            
+//         )
+//     }
+// }
 
-ReactDOM.render(<RatRace />, document.getElementById("root"));
+// ReactDOM.render(<RatRace />, document.getElementById("root"));
 
 //********************************************************Optimize Performance********************************************************
 
+
+//********************************************************Integrate React to other library********************************************************
+
+
+
+// class RegisterForm extends React.Component {
+//     constructor(props){
+//         super(props);
+//         this.showValue = this.showValue.bind(this);        
+//     }
+
+//     showValue() {
+//         let value = this.$el.val();
+//         let name = this.$el.data("txtFistName");
+//         console.log(`txtFistName has value = ${value}`);
+//     }
+
+//     componentDidMount(){
+//         this.$el = $(this.el);
+//     }
+    
+//     componentWillUnmount() {
+//         this.$el.somePlugin('destroy');
+//     }
+
+//     render(){
+//         return (
+//             <div>
+//                 <input data-name="txtFistName" ref={(input)=>this.el = input} />
+//                 <button onClick={this.showValue}>Show value</button>                
+//             </div>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<RegisterForm />, document.getElementById("root"));
+
+class Chosen extends React.Component {
+    componentDidMount() {
+      this.$el = $(this.el);
+      this.$el.chosen();
+    }
+    
+    componentWillUnmount() {
+      this.$el.chosen('destroy');
+    }
+    
+    render() {
+      return (
+        <div>
+          <select className="Chosen-select" ref={el => this.el = el}>
+            {this.props.children}
+          </select>
+        </div>
+      );
+    }
+  }
+  
+  function Example() {
+    return (
+      <Chosen>
+        <option>vanilla</option>
+        <option>chocolate</option>
+        <option>strawberry</option>
+      </Chosen>
+    );
+  }
+  
+  ReactDOM.render(
+    <Example />,
+    document.getElementById('root')
+  );
+  
+
+//********************************************************Integrate React to other library********************************************************
 
 
