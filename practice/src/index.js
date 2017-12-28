@@ -709,7 +709,7 @@ import './index.css';
 //         return <p className='icon'>{props.icontype}</p>
 //     }
 // };
-
+``
 // ReactDOM.render(<comment.icon icontype="special"/>, document.getElementById("root"));
 
 
@@ -773,7 +773,64 @@ class AutoFocusTextInput extends React.Component{
     }
 }
 
-ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
+// function RedTransformer(props){
+//     return <span className='transform-red'>{props.value}</span>
+// }
+
+// class TransformInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+
+//     handleChange(e){
+//         let value = e.target.value;
+//         this.props.Transform(value);
+//     }
+
+//     render(){
+//         return (
+//             <div>
+//                 <label>Original </label><input type='text' value={this.props.value} onChange={this.handleChange}  />
+//                 <p>{this.props.transformedValue}</p>
+//             </div>
+//         );
+//     }
+// }
+
+// class App extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             value: '',
+//             transformedValue: null
+//         };
+//         this.handleTransform = this.handleTransform.bind(this);
+//     }
+
+//     handleTransform(value){
+//         let originalValue = value;
+//         //let transformedValue = value.toString().toLowerCase();
+//         let transformedValue  = <RedTransformer value={originalValue} />
+//         this.setState({
+//             value: originalValue,
+//             transformedValue: transformedValue
+//         });
+//     }
+
+//     render(){
+//         return (
+//             <TransformInput value={this.state.value} transformedValue={this.state.transformedValue} Transform={this.handleTransform} />
+//         );
+//     }
+// }
+// ReactDOM.render(<App />, document.getElementById("root"));
+
+
+
+
+
+//ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
 
 
 //********************************************************Refs and DOM********************************************************
