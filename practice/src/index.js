@@ -909,43 +909,40 @@ import './index.css';
 // }
 
 // ReactDOM.render(<RegisterForm />, document.getElementById("root"));
-
-
-
-
-
 //********************************************************Refs and DOM********************************************************
 
 
-//********************************************************Help********************************************************
 
-// var text = 'Google is a search engine service, google is also an engine for a lot of other services and tools';
-// //Google is a search engine service, google is also an engine for a lot of other services and tools
-// function findWord(text, input){
-//     var inputLength = input.length;
-//     var inputFirstCharacter = input[0].toLowerCase();
-//     var searchInput='';
-
-//     for(var i =0;i<text.length;i++){
-//         if (text[i].toLowerCase()===inputFirstCharacter){
-//             //create a word from current position to current position + inputLength;
-//             searchInput = ''
-//             for(var j=i;j<i+inputLength;j++) {
-//                 if (j <= text.length-1){
-//                     searchInput+=text[j];
-//                 }
-//             }
-//             if (searchInput.toLocaleLowerCase()===input.toLocaleLowerCase()){
-//                 console.log(`i=${i}; j=${j}, i + inputLength=${i + inputLength}`);   
-//                 i = i + inputLength - 1;
-//             }
-//         }
+//********************************************************Uncontrolled Component********************************************************
+// class FormRegister extends React.Component {
+//     constructor(props){
+//         super(props);       
+//         this.handleSubmit = this.handleSubmit.bind(this);
 //     }
-// }
 
-// findWord(text,'o');
+//     handleSubmit(ev){
+//         console.log(`${this.firstName.value} is your ${this.checkReal.checked ? "real":"alias"} name`);
+//         //clear current value
+//         this.firstName.value = '';
+//         ev.preventDefault();
+//     }
 
-//********************************************************Help********************************************************
+//     render(){
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <p>
+//                     <label>First Name</label> <input type='text' ref={(input)=>{this.firstName = input;}} defaultValue='Linh' />                    
+//                 </p>               
+//                 <p>
+//                     <label>Is your real name </label> <input type='checkbox' ref={input=>this.checkReal = input} />
+//                 </p>
+//                 <input type='submit' value="Show" onClick={this.showInfo} />
+//             </form>
+//         );
+//     }
+// };
+
+// ReactDOM.render(<FormRegister />, document.getElementById("root"));
 
 
-
+//********************************************************Uncontrolled Component********************************************************
