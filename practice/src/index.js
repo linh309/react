@@ -733,45 +733,6 @@ import './index.css';
 
 
 //********************************************************Refs and DOM********************************************************
-//Adding a ref to a DOM element
-class CustomTextInput  extends React.Component{
-    constructor(props){
-        super(props);
-        this.focusTextInput = this.focusTextInput.bind(this);
-    }
-
-    focusTextInput(){
-        //reference to textbox and use focus function
-        this.textInput.focus();
-    }
-
-    confirmAutoFocused(){
-        console.log('Focused');
-    }
-
-    render(){
-        return (
-            <div>
-                <input type='text' ref={(input)=>{this.textInput = input}} />
-                <input type='button' value='focus on textbox' onClick={this.focusTextInput} />
-            </div>
-        )
-    }
-}
-
-class AutoFocusTextInput extends React.Component{
-    componentDidMount(){
-        // debugger;
-        this.textInput.focusTextInput();
-        this.textInput.confirmAutoFocused();
-    }
-
-    render(){
-        return (
-            <CustomTextInput ref={(input) => { this.textInput = input; }} />
-        );
-    }
-}
 
 // function RedTransformer(props){
 //     return <span className='transform-red'>{props.value}</span>
@@ -829,8 +790,128 @@ class AutoFocusTextInput extends React.Component{
 
 
 
+//Adding a ref to a DOM element
+// class CustomTextInput  extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.focusTextInput = this.focusTextInput.bind(this);
+//     }
 
-//ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
+//     focusTextInput(){
+//         //reference to textbox and use focus function
+//         this.textInput.focus();
+//     }
+
+//     confirmAutoFocused(){
+//         console.log('Focused');
+//     }
+
+//     render(){
+//         return (
+//             <div>
+//                 <input type='text' ref={(input)=>{this.textInput = input}} />
+//                 <input type='button' value='focus on textbox' onClick={this.focusTextInput} />
+//             </div>
+//         )
+//     }
+// }
+
+// class AutoFocusTextInput extends React.Component{
+//     componentDidMount(){
+//         // debugger;
+//         this.textInput.focusTextInput();
+//         this.textInput.confirmAutoFocused();
+//     }
+
+//     render(){
+//         return (
+//             <CustomTextInput ref={(input) => { this.textInput = input; }} />
+//         );
+//     }
+// }
+// //ReactDOM.render(<AutoFocusTextInput />, document.getElementById("root"));
+
+
+// /*Exposing DOM ref to parent component */
+// function ChildInput(props){
+//     return (
+//         <input type='text' ref={props.parentInput} value={props.value} /> //how the parent of this component access directly to this input
+//     );
+// }
+
+// class Parent extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleClick = this.handleClick.bind(this);
+//         this.handleChangeInput = this.handleChangeInput.bind(this);
+//         this.state = {
+//             value: ''
+//         }
+//     }
+
+//     handleChangeInput(e){
+//         let value = 'aa';
+//         this.setState({value});
+//     }
+
+//     handleClick(){
+//         console.log(this.childInput.value);
+//     }
+
+//     render(){
+//         return (
+//             <div>
+//                 <ChildInput parentInput={el => this.childInput = el} onChangeInput={this.handleChangeInput} value={this.state.value} />
+//                 <input type='button' value="Show Value" onClick={this.handleClick} />
+//             </div>            
+//         );
+//     }
+// }
+
+// class RegisterForm extends React.Component{
+//     constructor(props){
+//         super(props);                
+//         this.state={
+//             firstName: '',
+//             lastName: ''
+//         };
+//         this.showInfo = this.showInfo.bind(this);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+
+//     showInfo(){
+//         let firstName = this.firstName.value;
+//         let lastName = this.lastName.value;
+//         this.setState({FullName: `${lastName} ${firstName}`});
+//     }
+
+//     handleChange(e){
+//         let firstName = this.firstName.value;
+//         let lastName = this.lastName.value;
+//         this.setState({firstName, lastName});
+//     }
+
+//     render(){
+//         return (
+//             <form>
+//                 <p>
+//                     <label>First Name</label> <input type='text' ref={(input)=>{this.firstName = input;}} value={this.state.firstName} onChange={this.handleChange} />
+//                 </p>
+//                 <p>
+//                     <label>Last Name</label> <input type='text' ref={(input)=>{this.lastName = input;}} value={this.state.lastName} onChange={this.handleChange}/>
+//                 </p>
+//                 <p>Your full name: {`${this.state.lastName} ${this.state.firstName}`}</p>
+//                 <hr />
+//                 <input type='button' value="Show" onClick={this.showInfo} />
+//             </form>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<RegisterForm />, document.getElementById("root"));
+
+
+
 
 
 //********************************************************Refs and DOM********************************************************
