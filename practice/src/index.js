@@ -1063,46 +1063,163 @@ import $ from 'jquery';
 //         );
 //     }
 // }
-
 // ReactDOM.render(<RegisterForm />, document.getElementById("root"));
 
-class Chosen extends React.Component {
-    componentDidMount() {
-      this.$el = $(this.el);
-      this.$el.chosen();
-    }
+// class Chosen extends React.Component {
+//     componentDidMount() {
+//       this.$el = $(this.el);
+//       this.$el.chosen();
+//     }
     
-    componentWillUnmount() {
-      this.$el.chosen('destroy');
-    }
+//     componentWillUnmount() {
+//       this.$el.chosen('destroy');
+//     }
     
-    render() {
-      return (
-        <div>
-          <select className="Chosen-select" ref={el => this.el = el}>
-            {this.props.children}
-          </select>
-        </div>
-      );
-    }
-  }
+//     render() {
+//       return (
+//         <div>
+//           <select className="Chosen-select" ref={el => this.el = el}>
+//             {this.props.children}
+//           </select>
+//         </div>
+//       );
+//     }
+//   }
   
-  function Example() {
-    return (
-      <Chosen>
-        <option>vanilla</option>
-        <option>chocolate</option>
-        <option>strawberry</option>
-      </Chosen>
-    );
-  }
+//   function Example() {
+//     return (
+//       <Chosen>
+//         <option>vanilla</option>
+//         <option>chocolate</option>
+//         <option>strawberry</option>
+//       </Chosen>
+//     );
+//   }
   
-  ReactDOM.render(
-    <Example />,
-    document.getElementById('root')
-  );
+//   ReactDOM.render(
+//     <Example />,
+//     document.getElementById('root')
+//   );
   
 
 //********************************************************Integrate React to other library********************************************************
+
+
+//********************************************************Practicing********************************************************
+
+// class Person extends React.Component {
+//   constructor(props){
+//     super(props);
+//   }
+
+//   render() {
+//     return (
+//       <p><b>{this.props.name}</b></p>
+//     );
+//   }
+// }
+
+// class Student extends React.Component {
+//   constructor(props){
+//     super(props);
+//   }
+
+//   render(){
+//     return (
+//       <div>
+//         {this.props.person}
+//       </div>
+//     );
+//   }
+// }
+
+//ReactDOM.render(<Person name="Linh - Person" />, document.getElementById("root"));
+
+//ReactDOM.render(<Student name="Linh - Student" course="React" />, document.getElementById("parent"));
+
+// ReactDOM.render(<Person name="Linh - Person" />, document.getElementById("parent"));
+// ReactDOM.render(<Person name="Linh - Person" />, document.getElementById("grandParent"));
+
+// ReactDOM.render(<Person name="Linh - Person" />, document.getElementById("grandParent"));
+// ReactDOM.render(<Student name="Linh - Student" course="React" />, document.getElementById("parent"));
+
+
+//********************************************************Practicing********************************************************
+
+let thisIsTheShowFunction = ()=>{
+  console.log('Test');
+}
+
+let testFunction = function(name, ...rest){  
+  var xx = rest;
+  var args = arguments;
+  console.log(rest[0]);
+}
+
+let defaultParamsFunction = (firstName='Linh', lastName='Nguyen') => {
+  console.log(`${lastName} ${firstName}`);
+}
+
+
+class Student {
+  constructor(){
+    this.name = "Linh";
+    this.age = 28;
+  }
+  showName(){
+    console.log(this.name);
+  }
+  showNameOfName (){
+    console.log(`Name is: ${this.name}`)
+  }
+}
+
+
+
+var Student1 = function () {
+  function Student1() {
+    //_classCallCheck(this, Student);
+
+    this.name = "Linh";
+  }
+
+  // _createClass(Student, [{
+  //   key: 'showName',
+  //   value: function showName() {
+  //     console.log(this.name);
+  //   }
+  // }]);
+
+  return Student1;
+}();
+
+
+var st1 = Student1;
+var st2 = Student1();
+
+
+//defaultParamsFunction('Nguyen','Linh');
+var st = new Student();
+//st.showName();
+
+
+
+
+
+function Person(){
+  this.name = 'Linh';  
+}
+
+Object.defineProperty(Person,'showName',function(){
+  console.log(this.name);
+});
+
+var p = new Person();
+p.showName();
+
+
+
+
+
 
 
