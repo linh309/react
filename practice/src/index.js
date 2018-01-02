@@ -1160,31 +1160,30 @@ import $ from 'jquery';
 //   console.log(`${lastName} ${firstName}`);
 // }
 
+// class Student {
+//   constructor(name, age){
+//     this.name = name;
+//     this.age = age;
+//   }
+//   showName(){
+//     console.log(this.name);
+//   }
+//   showNameOfName (){
+//     console.log(`Name is: ${this.name}`)
+//   }
+// }
 
-class Student {
-  constructor(name, age){
-    this.name = name;
-    this.age = age;
-  }
-  showName(){
-    console.log(this.name);
-  }
-  showNameOfName (){
-    console.log(`Name is: ${this.name}`)
-  }
-}
+// class worseStudent extends Student {
+//   constructor(){
+//     super();
+//   }
 
-class worseStudent extends Student {
-  constructor(){
-    super();
-  }
+//   showName(){
+//     console.log(this.name);
+//   }
+// }
 
-  showName(){
-    console.log(this.name);
-  }
-}
-
-var linhworseStudent = new worseStudent('linh',28);
+// var linhworseStudent = new worseStudent('linh',28);
 
 //var linhBestStudent = new Student('linh',28);
 //console.log(`${linhBestStudent.name} is ${linhBestStudent.age} years old`);
@@ -1221,43 +1220,37 @@ var linhworseStudent = new worseStudent('linh',28);
 
 
 
-function Person(){
-  this.name = 'Linh';  
-}
+// function Person(){
+//   this.name = 'Linh';  
+// }
 
-// Object.defineProperty(Person,'showName',{
+// // Object.defineProperty(Person,'showName',{
+// //   configurable: true,
+// //   enumerable: true,
+// //   writable: true,
+// //   value: function (){
+// //     console.log(this.name);
+// //   }
+// // });
+
+// Object.defineProperty(Person.prototype,'age',{
+//   configurable: true,
+//   enumerable: true,
+//   writable: true,
+//   value: 28
+// });
+
+
+// Object.defineProperty(Person.prototype,'showAge',{
 //   configurable: true,
 //   enumerable: true,
 //   writable: true,
 //   value: function (){
-//     console.log(this.name);
+//     console.log(this.age)
 //   }
 // });
 
-Object.defineProperty(Person.prototype,'age',{
-  configurable: true,
-  enumerable: true,
-  writable: true,
-  value: 28
-});
-
-
-Object.defineProperty(Person.prototype,'showAge',{
-  configurable: true,
-  enumerable: true,
-  writable: true,
-  value: function (){
-    console.log(this.age)
-  }
-});
-
-var p = new Person();
-console.log(p.age);
-p.showAge();
-
-
-
-
-
-
+// var p = new Person();
+// console.log(p.age);
+// p.showAge();
 
