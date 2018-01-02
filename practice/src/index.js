@@ -1253,13 +1253,37 @@ import './index.css';
 // console.log(p.age);
 // p.showAge();
 
-function uppercase(value=''){
-    return value.toUpperCase();
-}
+// function uppercase(value=''){
+//     return value.toUpperCase();
+// }
 
-//default parameter
-function defaultParameterGetName(prefix, firstName='Linh', lastName='Nguyen', formatFunction){
-    let formattedName = formatFunction(`${prefix}: ${firstName} ${lastName}`);    
-    console.log(formattedName);
-}
-defaultParameterGetName('Upper Name is','Linh', 'Nguyen', value =>{ return value.toLowerCase()});
+// //default parameter
+// function defaultParameterGetName(prefix, firstName='Linh', lastName='Nguyen', formatFunction){
+//     let formattedName = formatFunction(`${prefix}: ${firstName} ${lastName}`);    
+//     console.log(formattedName);
+// }
+
+// defaultParameterGetName('Upper Name is','Linh', 'Nguyen', value =>{ return value.toLowerCase()});
+
+//Multi-line Strings in ES6
+// var roadPoem = 'Then took the other, as just as fair,\n\t'
+//     + 'And having perhaps the better claim\n\t'
+//     + 'Because it was grassy and wanted wear,\n\t'
+//     + 'Though as for that the passing there\n\t'
+//     + 'Had worn them really about the same,\n\t'
+// console.log(roadPoem);
+
+// console.log('\n\n==========================================\n\n');
+
+
+// var multiLine = `This is the line 1
+//     this is line 2
+//     this is line 3`;
+// console.log(multiLine);
+
+// console.log('\n\n================VANILA JS==========================\n\n');
+// var multiLineVanila = 'This is the line 1\n         this is line 2\n    this is line 3      \nthis is line 4';
+// console.log(multiLineVanila);
+
+
+// /4. Destructuring Assignment in ES6
