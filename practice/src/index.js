@@ -1174,9 +1174,20 @@ class Student {
   }
 }
 
+class worseStudent extends Student {
+  constructor(){
+    super();
+  }
 
-var linhBestStudent = new Student('linh',28);
-console.log(`${linhBestStudent.name} is ${linhBestStudent.age} years old`);
+  showName(){
+    console.log(this.name);
+  }
+}
+
+var linhworseStudent = new worseStudent('linh',28);
+
+//var linhBestStudent = new Student('linh',28);
+//console.log(`${linhBestStudent.name} is ${linhBestStudent.age} years old`);
 
 
 
