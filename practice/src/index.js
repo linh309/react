@@ -1286,4 +1286,23 @@ import './index.css';
 // console.log(multiLineVanila);
 
 
-// /4. Destructuring Assignment in ES6
+//4. Destructuring Assignment in ES6
+class Student{
+    constructor(){
+        this.name = 'Linh';
+        this.age = 12;
+        this.course = 'ReactJS';
+        this.level = 'Beginner';
+    }
+}
+
+var st = {
+    name: "Linh",
+    age: 28
+}
+
+var bestDestructuingStudent = new Student('Linh', 28);
+var {name, age} = st; //bestDestructuingStudent;
+var {course, level} = bestDestructuingStudent;
+
+console.log(`I'm ${name} is ${age} years old. I'm learning ${course} with level ${level}`);
