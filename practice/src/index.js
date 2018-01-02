@@ -1146,19 +1146,19 @@ import $ from 'jquery';
 
 //********************************************************Practicing********************************************************
 
-let thisIsTheShowFunction = ()=>{
-  console.log('Test');
-}
+// let thisIsTheShowFunction = ()=>{
+//   console.log('Test');
+// }
 
-let testFunction = function(name, ...rest){  
-  var xx = rest;
-  var args = arguments;
-  console.log(rest[0]);
-}
+// let testFunction = function(name, ...rest){  
+//   var xx = rest;
+//   var args = arguments;
+//   console.log(rest[0]);
+// }
 
-let defaultParamsFunction = (firstName='Linh', lastName='Nguyen') => {
-  console.log(`${lastName} ${firstName}`);
-}
+// let defaultParamsFunction = (firstName='Linh', lastName='Nguyen') => {
+//   console.log(`${lastName} ${firstName}`);
+// }
 
 
 class Student {
@@ -1176,31 +1176,31 @@ class Student {
 
 
 
-var Student1 = function () {
-  function Student1() {
-    //_classCallCheck(this, Student);
+// var Student1 = function () {
+//   function Student1() {
+//     //_classCallCheck(this, Student);
 
-    this.name = "Linh";
-  }
+//     this.name = "Linh";
+//   }
 
-  // _createClass(Student, [{
-  //   key: 'showName',
-  //   value: function showName() {
-  //     console.log(this.name);
-  //   }
-  // }]);
+//   // _createClass(Student, [{
+//   //   key: 'showName',
+//   //   value: function showName() {
+//   //     console.log(this.name);
+//   //   }
+//   // }]);
 
-  return Student1;
-}();
-
-
-var st1 = Student1;
-var st2 = Student1();
+//   return Student1;
+// }();
 
 
-//defaultParamsFunction('Nguyen','Linh');
-var st = new Student();
-//st.showName();
+// var st1 = Student1;
+// var st2 = Student1();
+
+
+// //defaultParamsFunction('Nguyen','Linh');
+// var st = new Student();
+// //st.showName();
 
 
 
@@ -1210,12 +1210,24 @@ function Person(){
   this.name = 'Linh';  
 }
 
-Object.defineProperty(Person,'showName',function(){
-  console.log(this.name);
+// Object.defineProperty(Person,'showName',{
+//   configurable: true,
+//   enumerable: true,
+//   writable: true,
+//   value: function (){
+//     console.log(this.name);
+//   }
+// });
+
+Object.defineProperty(Person.prototype,'age',{
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  value: 28
 });
 
 var p = new Person();
-p.showName();
+console.log(p.age);
 
 
 
