@@ -1287,22 +1287,39 @@ import './index.css';
 
 
 //4. Destructuring Assignment in ES6
-class Student{
-    constructor(){
-        this.name = 'Linh';
-        this.age = 12;
-        this.course = 'ReactJS';
-        this.level = 'Beginner';
-    }
+// class Student{
+//     constructor(){
+//         this.name = 'Linh';
+//         this.age = 12;
+//         this.course = 'ReactJS';
+//         this.level = 'Beginner';
+//     }
+// }
+
+// var st = {
+//     name: "Linh",
+//     age: 28
+// }
+
+// var bestDestructuingStudent = new Student('Linh', 28);
+// var {name, age} = st; //bestDestructuingStudent;
+// var {course, level} = bestDestructuingStudent;
+
+// console.log(`I'm ${name} is ${age} years old. I'm learning ${course} with level ${level}`);
+
+//5. Enhanced Object Literals in ES6
+let firstName = 'Nguyen',
+    lastName = 'Linh';
+function showName(firstName, lastName){
+    console.log(`${firstName} ${lastName}`);
 }
 
-var st = {
-    name: "Linh",
-    age: 28
-}
+let st = {
+    firstName, 
+    lastName,
+    showName
+};
 
-var bestDestructuingStudent = new Student('Linh', 28);
-var {name, age} = st; //bestDestructuingStudent;
-var {course, level} = bestDestructuingStudent;
-
-console.log(`I'm ${name} is ${age} years old. I'm learning ${course} with level ${level}`);
+st.showName(st.firstName,st.lastName );
+//console.log(st.firstName);
+//console.log(st.lastName);
