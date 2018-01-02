@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import $ from 'jquery';
 
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
@@ -1254,3 +1253,13 @@ import $ from 'jquery';
 // console.log(p.age);
 // p.showAge();
 
+function uppercase(value=''){
+    return value.toUpperCase();
+}
+
+//default parameter
+function defaultParameterGetName(prefix, firstName='Linh', lastName='Nguyen', formatFunction){
+    let formattedName = formatFunction(`${prefix}: ${firstName} ${lastName}`);    
+    console.log(formattedName);
+}
+defaultParameterGetName('Upper Name is','Linh', 'Nguyen', value =>{ return value.toLowerCase()});
