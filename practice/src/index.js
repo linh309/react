@@ -1162,9 +1162,9 @@ import $ from 'jquery';
 
 
 class Student {
-  constructor(){
-    this.name = "Linh";
-    this.age = 28;
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
   }
   showName(){
     console.log(this.name);
@@ -1173,6 +1173,10 @@ class Student {
     console.log(`Name is: ${this.name}`)
   }
 }
+
+
+var linhBestStudent = new Student('linh',28);
+console.log(`${linhBestStudent.name} is ${linhBestStudent.age} years old`);
 
 
 
@@ -1226,8 +1230,19 @@ Object.defineProperty(Person.prototype,'age',{
   value: 28
 });
 
+
+Object.defineProperty(Person.prototype,'showAge',{
+  configurable: true,
+  enumerable: true,
+  writable: true,
+  value: function (){
+    console.log(this.age)
+  }
+});
+
 var p = new Person();
 console.log(p.age);
+p.showAge();
 
 
 
