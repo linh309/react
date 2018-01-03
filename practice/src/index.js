@@ -1454,21 +1454,62 @@ import './index.css';
 // var p = new fixedPerson();
 // //debugger;
 
-function Person(){
-  this.age = 0;
-  setInterval(() => {
-    function ownThis() {
-      this.test = 0;
-     setInterval (()=>{
-       console.log(`Test: ${this.test}, age: ${this.age}`);
-     },1000);
-    }
+// function Person(){
+//   this.age = 0;
+//   setInterval(() => {
+//     function ownThis() {
+//       this.test = 0;
+//      setInterval (()=>{
+//        console.log(`Test: ${this.test}, age: ${this.age}`);
+//      },1000);
+//     }
 
-    this.age++;
-    console.log(this.age);
+//     this.age++;
+//     console.log(this.age);
 
-    ownThis.call(this);
-  }, 1000);
+//     ownThis.call(this);
+//   }, 1000);
+// }
+
+// var p = new Person();
+
+function getByUrl(url){
+    return new Promise(function (resolve, reject){
+        // Do the usual XHR stuff
+        var req = new XMLHttpRequest();
+        req.open('GET', url);
+
+        req.onload = function() {
+            // This is called even on 404 etc
+            // so check the status
+            if (req.status == 200) {
+              // Resolve the promise with the response text
+              resolve(req.response,'aaaa');
+            }
+            else {
+              // Otherwise reject with the status text
+              // which will hopefully be a meaningful error
+              reject(Error(req.statusText));
+            }
+        };
+
+        // Handle network errors
+        req.onerror = function() {
+            reject(Error("Network Error"));
+        };
+  
+        // Make the request
+        req.send();
+
+    });
 }
 
-var p = new Person();
+var url = 'https://api.github.com/users/linh309';
+function showResponse(res,msg){
+    console.log(`OK and ${msg}'`, res);
+}
+
+
+getByUrl(url).then(showResponse, function (error){
+    console.log('error', error);
+})
