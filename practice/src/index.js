@@ -1311,7 +1311,7 @@ import './index.css';
 let firstName = 'Nguyen',
     lastName = 'Linh';
 function showName(firstName, lastName){
-    console.log(`${firstName} ${lastName}`);
+    //console.log(`${firstName} ${lastName}`);
 }
 
 let st = {
@@ -1319,7 +1319,46 @@ let st = {
     lastName,
     showName
 };
-
 st.showName(st.firstName,st.lastName );
-//console.log(st.firstName);
-//console.log(st.lastName);
+
+
+
+var common = {
+  name: "Linh",
+  age: 28,
+  title: "Developer"  
+};
+
+//Computed property name
+function extend(common, newObject, isCreateNewObject){  
+  var newObj = {};
+  if (isCreateNewObject){
+    for(let prop in common){
+      newObj[prop] = common[prop];
+    }
+  }
+  else{
+    newObj = common;
+  }
+
+  for (let prop in newObject){
+    if (newObj.hasOwnProperty(prop)){
+      newObj[prop] = newObject[prop];
+    }
+  }
+
+  return newObj;
+};
+
+var propTitle = 'title';
+var newTitle = 'Senior Developer';
+var newName = "NGUYEN Linh";
+var propName = 'name';
+
+var extended = extend(common,{
+  [propTitle]: newTitle,
+  [propName]: newName
+}, true);
+
+console.log(extended);
+console.log(common);
