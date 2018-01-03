@@ -1308,57 +1308,167 @@ import './index.css';
 // console.log(`I'm ${name} is ${age} years old. I'm learning ${course} with level ${level}`);
 
 //5. Enhanced Object Literals in ES6
-let firstName = 'Nguyen',
-    lastName = 'Linh';
-function showName(firstName, lastName){
-    //console.log(`${firstName} ${lastName}`);
+// let firstName = 'Nguyen',
+//     lastName = 'Linh';
+// function showName(firstName, lastName){
+//     //console.log(`${firstName} ${lastName}`);
+// }
+
+// let st = {
+//     firstName, 
+//     lastName,
+//     showName
+// };
+// st.showName(st.firstName,st.lastName );
+
+
+
+// var common = {
+//   name: "Linh",
+//   age: 28,
+//   title: "Developer"  
+// };
+
+// //Computed property name
+// function extend(common, newObject, isCreateNewObject){  
+//   var newObj = {};
+//   if (isCreateNewObject){
+//     for(let prop in common){
+//       newObj[prop] = common[prop];
+//     }
+//   }
+//   else{
+//     newObj = common;
+//   }
+
+//   for (let prop in newObject){
+//     if (newObj.hasOwnProperty(prop)){
+//       newObj[prop] = newObject[prop];
+//     }
+//   }
+
+//   return newObj;
+// };
+
+// var propTitle = 'title';
+// var newTitle = 'Senior Developer';
+// var newName = "NGUYEN Linh";
+// var propName = 'name';
+
+// var extended = extend(common,{
+//   [propTitle]: newTitle,
+//   [propName]: newName
+// }, true);
+
+// console.log(extended);
+// console.log(common);
+
+
+
+// class StudentXXXXXX{
+//     constructor(){
+//         this.name = 'Linh';
+//         this.age = 12;
+//         this.course = 'ReactJS';
+//         this.level = 'Beginner';
+//     }
+// }
+
+// class StudentYYY extends StudentXXXXXX{
+//   constructor(){
+//     super();
+//       // this.name = 'Linh';
+//       // this.age = 12;
+//       // this.course = 'ReactJS';
+//       // this.level = 'Beginner';
+//   }
+// }
+
+
+//================================================= Arrow function ================================================= 
+//can't be used as constructors
+//doesn't have its own "this"
+// var fnShow = (name) => name.toUpperCase();
+// var fnShow1 = (name) => {return name.toUpperCase();}
+// console.log(fnShow('Linh'));
+// console.log(fnShow1('Linh - with return'));
+
+// var cars = [
+//   {brand: "Toyota", speed: 100},
+//   {brand: "Tesla", speed:200},
+//   {brand: "Ford", speed: 300},
+//   {brand: "Mazda", speed: 400},
+// ];
+
+// //ES5 used to create a new array of brand
+// var brands = cars.map(function(car){
+//   return car.brand;
+// });
+// console.log(brands);
+
+// //ES6 used to create a new array of speed
+// var speeds = cars.map(car=>car.speed);
+// var horseSpeeds = speeds.filter(s=>s>=300),
+//     horseES5Speeds = speeds.filter(function(s){
+//       return s>=300;
+//     });
+
+
+// console.log(speeds);
+// console.log(horseSpeeds);
+// console.log(horseES5Speeds);
+
+// var name = "Linh";
+// function showName(){
+//   console.log(this.name);
+// }
+
+// showName();
+
+// function Person() {
+//   // The Person() constructor defines `this` as an instance of itself.
+//   this.age = 0;
+
+//   setInterval(function growUp() {
+//     // In non-strict mode, the growUp() function defines `this` 
+//     // as the global object, which is different from the `this`
+//     // defined by the Person() constructor.
+//     this.age++;    
+//     console.log(this.age);
+//   }, 1000);
+// }
+
+// function fixedPerson (){
+//   this.age =0;
+//   var that = this;
+
+//   setInterval(function growUp() {
+//     // In non-strict mode, the growUp() function defines `this` 
+//     // as the global object, which is different from the `this`
+//     // defined by the Person() constructor.
+//     that.age++;    
+//     console.log(that.age);
+//   }, 1000);
+// }
+
+// var p = new fixedPerson();
+// //debugger;
+
+function Person(){
+  this.age = 0;
+  setInterval(() => {
+    function ownThis() {
+      this.test = 0;
+     setInterval (()=>{
+       console.log(`Test: ${this.test}, age: ${this.age}`);
+     },1000);
+    }
+
+    this.age++;
+    console.log(this.age);
+
+    ownThis.call(this);
+  }, 1000);
 }
 
-let st = {
-    firstName, 
-    lastName,
-    showName
-};
-st.showName(st.firstName,st.lastName );
-
-
-
-var common = {
-  name: "Linh",
-  age: 28,
-  title: "Developer"  
-};
-
-//Computed property name
-function extend(common, newObject, isCreateNewObject){  
-  var newObj = {};
-  if (isCreateNewObject){
-    for(let prop in common){
-      newObj[prop] = common[prop];
-    }
-  }
-  else{
-    newObj = common;
-  }
-
-  for (let prop in newObject){
-    if (newObj.hasOwnProperty(prop)){
-      newObj[prop] = newObject[prop];
-    }
-  }
-
-  return newObj;
-};
-
-var propTitle = 'title';
-var newTitle = 'Senior Developer';
-var newName = "NGUYEN Linh";
-var propName = 'name';
-
-var extended = extend(common,{
-  [propTitle]: newTitle,
-  [propName]: newName
-}, true);
-
-console.log(extended);
-console.log(common);
+var p = new Person();
