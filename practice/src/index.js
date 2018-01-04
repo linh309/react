@@ -1548,28 +1548,34 @@ import './index.css';
 
 function get(url) {
     //Create and return a promise
-    return new Promise(function(resolve, reject) {
-        var req = new XMLHttpRequest();
-        req.open("GET", url);
+    return new Promise(function(resolve, reject) {               
+        setTimeout(function (){
+            let req = new XMLHttpRequest();
+            req.open("GET", url);
+    
+            req.onload = function (){
+                if (req.status==200) {
+                    //call solve function
+                    resolve(req.response);
+                }
+                else {
+                    reject(req.statusText);
+                }
+            };
 
-        req.onload = function (){
-            if (req.status==200) {
-                //call solve function
-                resolve(req.response);
-            }
-            else {
-                reject(req.statusText);
-            }
-        };
+            req.onerror = () => {
+                reject("Network Error");
+            };
 
-        //handle error
-        req.onerror = () => {
-            reject("Network Error");
-        };
-
-        req.send();
+            req.send();
+        },5000);        
     });
 }
+
+
+
+let count = 0;
+let counter = setInterval(()=>{console.log(++count)},1000);
 
 var url = 'https://api.github.com/users/linh309';
 get(url).then(function(response){
@@ -1586,5 +1592,6 @@ get(url).then(function(response){
 })
 .then(function(data){
     var img = document.getElementById("imgAvatar");
-    //img.src=data;
+    img.src=data;
+    clearInterval(counter);
 });
