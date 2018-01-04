@@ -1473,43 +1473,118 @@ import './index.css';
 
 // var p = new Person();
 
-function getByUrl(url){
-    return new Promise(function (resolve, reject){
-        // Do the usual XHR stuff
-        var req = new XMLHttpRequest();
-        req.open('GET', url);
+// function getByUrl(url){
+//     return new Promise(function (resolve, reject){
+//         // Do the usual XHR stuff
+//         var req = new XMLHttpRequest();
+//         req.open('GET', url);
 
-        req.onload = function() {
-            // This is called even on 404 etc
-            // so check the status
-            if (req.status == 200) {
-              // Resolve the promise with the response text
-              resolve(req.response,'aaaa');
+//         req.onload = function() {
+//             // This is called even on 404 etc
+//             // so check the status
+//             if (req.status == 200) {
+//               // Resolve the promise with the response text
+//               resolve(req.response,'aaaa');
+//             }
+//             else {
+//               // Otherwise reject with the status text
+//               // which will hopefully be a meaningful error
+//               reject(Error(req.statusText));
+//             }
+//         };
+
+//         // Handle network errors
+//         req.onerror = function() {
+//             reject(Error("Network Error"));
+//         };
+  
+//         // Make the request
+//         req.send();
+
+//     });
+// }
+
+// var url = 'https://api.github.com/users/linh309';
+// function showResponse(res,msg){
+//     console.log(`OK and ${msg}'`, res);
+// }
+
+
+// getByUrl(url).then(showResponse, function (error){
+//     console.log('error', error);
+// })
+
+
+// var p = new Promise(function(resolve, reject){
+//   setTimeout(() => {
+//     resolve('aa','bb','cc');        
+//   }, 1000);  
+// });
+
+// p.then(function(data,data1,data2){
+//   console.log(data);
+//   console.log(data1);
+//   console.log(data2);
+// });
+
+// var img1 = document.querySelector('.img-1');
+
+// function loaded(e){
+//   console.log(e);
+// }
+
+// if (img1.complete) {
+//   loaded();
+// }
+// else {
+//   img1.addEventListener("load", loaded);
+// }
+
+// img1.addEventListener('error',function(){
+//   console.log("Error");
+// });
+
+
+
+function get(url) {
+    //Create and return a promise
+    return new Promise(function(resolve, reject) {
+        var req = new XMLHttpRequest();
+        req.open("GET", url);
+
+        req.onload = function (){
+            if (req.status==200) {
+                //call solve function
+                resolve(req.response);
             }
             else {
-              // Otherwise reject with the status text
-              // which will hopefully be a meaningful error
-              reject(Error(req.statusText));
+                reject(req.statusText);
             }
         };
 
-        // Handle network errors
-        req.onerror = function() {
-            reject(Error("Network Error"));
+        //handle error
+        req.onerror = () => {
+            reject("Network Error");
         };
-  
-        // Make the request
-        req.send();
 
+        req.send();
     });
 }
 
 var url = 'https://api.github.com/users/linh309';
-function showResponse(res,msg){
-    console.log(`OK and ${msg}'`, res);
-}
+get(url).then(function(response){
+    var obj = JSON.parse(response);
+    console.log("Success, this response will be parsed as JSON and used to as data to next process", response);
+    console.log(`Your ID is ${obj.id}`);
 
-
-getByUrl(url).then(showResponse, function (error){
-    console.log('error', error);
+    return obj;
+}, function (response){
+    console.log(response);
 })
+.then(function(preResponse) {
+    return preResponse.avatar_url
+})
+.then(function(data){
+    var img = document.getElementById("imgAvatar");
+    //img.src=data;
+});
