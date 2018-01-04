@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
 
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
@@ -1546,52 +1546,77 @@ import './index.css';
 
 
 
-function get(url) {
-    //Create and return a promise
-    return new Promise(function(resolve, reject) {               
-        setTimeout(function (){
-            let req = new XMLHttpRequest();
-            req.open("GET", url);
+// function get(url) {
+//     //Create and return a promise
+//     return new Promise(function(resolve, reject) {               
+//         setTimeout(function (){
+//             let req = new XMLHttpRequest();
+//             req.open("GET", url);
     
-            req.onload = function (){
-                if (req.status==200) {
-                    //call solve function
-                    resolve(req.response);
-                }
-                else {
-                    reject(req.statusText);
-                }
-            };
+//             req.onload = function (){
+//                 if (req.status==200) {
+//                     //call solve function
+//                     resolve(req.response);
+//                 }
+//                 else {
+//                     reject(req.statusText);
+//                 }
+//             };
 
-            req.onerror = () => {
-                reject("Network Error");
-            };
+//             req.onerror = () => {
+//                 reject("Network Error");
+//             };
 
-            req.send();
-        },5000);        
-    });
-}
+//             req.send();
+//         },5000);        
+//     });
+// }
 
 
 
-let count = 0;
-let counter = setInterval(()=>{console.log(++count)},1000);
+// let count = 0;
+// let counter = setInterval(()=>{console.log(++count)},1000);
 
-var url = 'https://api.github.com/users/linh309';
-get(url).then(function(response){
-    var obj = JSON.parse(response);
-    console.log("Success, this response will be parsed as JSON and used to as data to next process", response);
-    console.log(`Your ID is ${obj.id}`);
+// var url = 'https://api.github.com/users/linh309';
+// get(url).then(function(response){
+//     var obj = JSON.parse(response);
+//     console.log("Success, this response will be parsed as JSON and used to as data to next process", response);
+//     console.log(`Your ID is ${obj.id}`);
 
-    return obj;
-}, function (response){
-    console.log(response);
-})
-.then(function(preResponse) {
-    return preResponse.avatar_url
-})
-.then(function(data){
-    var img = document.getElementById("imgAvatar");
-    img.src=data;
-    clearInterval(counter);
-});
+//     return obj;
+// }, function (response){
+//     console.log(response);
+// })
+// .then(function(preResponse) {
+//     return preResponse.avatar_url
+// })
+// .then(function(data){
+//     var img = document.getElementById("imgAvatar");
+//     img.src=data;
+//     clearInterval(counter);
+// })
+
+
+
+// var a  = 100;
+// console.log(a);
+// var a  = 1200;
+// console.log(`a = ${a}`);
+
+// var a = 10;
+// function showName(){    
+//     if (a >= 10){
+//         let a = 20;
+//         console.log(`let a = 20;: ${a}`)
+//     }
+
+//     if (a >= 20){
+//         let a = 30;
+//         console.log(`let a = 30: ${a}`)
+//     }    
+//     console.log(`a inside function: ${a}`)
+// }
+
+// showName();
+// console.log(`a outside function: ${a}`)
+
