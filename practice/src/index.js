@@ -1620,10 +1620,28 @@
 // showName();
 // console.log(`a outside function: ${a}`)
 
-var age = 100;
-if(age > 12) {
-  let dogYears = age * 7;
-  console.log(`You are ${dogYears} dog years old!`);
+// var age = 100;
+// if(age > 12) {
+//   let dogYears = age * 7;
+//   console.log(`You are ${dogYears} dog years old!`);
+// }
+
+// console.log(dogYears);
+
+
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }    
 }
 
-console.log(dogYears);
+// class Rectangle {
+//     constructor(height, width) {
+//       this.height = height;
+//       this.width = width;
+//     }
+//   }
+
+let square = new Rectangle(5,5);
+console.log(`Width: ${square.width}, left: ${square.height}`);
