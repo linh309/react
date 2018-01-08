@@ -1,6 +1,6 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
@@ -1747,18 +1747,18 @@
 // console.log(`Upper: ${upperName}; Lower: ${lowername}`);
 
 
-var name = 'Nguyen Linh';
-function Transform(val){
-    this.val = val;
-    this.showVal = () => {console.log(this.val)};
-}
+// var name = 'Nguyen Linh';
+// function Transform(val){
+//     this.val = val;
+//     this.showVal = () => {console.log(this.val)};
+// }
 
-Transform.toPrefix = (val) => `Transform: ${val}`;
-let prefixName = Transform.toPrefix(name);
-console.log(prefixName);
+// Transform.toPrefix = (val) => `Transform: ${val}`;
+// let prefixName = Transform.toPrefix(name);
+// console.log(prefixName);
 
-let transform = new Transform(name);
-transform.showVal();
+// let transform = new Transform(name);
+// transform.showVal();
 
 // Object.defineProperty(Transform, 'toUpper', {
 //     value: function toUpper(val) {
@@ -1775,3 +1775,27 @@ transform.showVal();
 // var upper  =  Transform.toLower(name);
 // var lower = new Transform().toLower(name)
 // console.log(`Upper: ${upper}; Lower: ${lower}`);
+
+//extends in class
+class Animal {
+    constructor(name){
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} makes a noise`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(name){
+        super(name);        
+    }
+    speak(){
+        super.speak();
+        console.log(`${this.name} is the dog, so it barks.`);
+    }
+}
+
+let choTa = new Dog('Ki');
+choTa.speak();
