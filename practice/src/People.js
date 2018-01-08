@@ -15,3 +15,4 @@ class Student extends People{
 }
 
 export {People, Student};
+//export default People;
