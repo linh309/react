@@ -1720,3 +1720,58 @@
 // //var square = new Rectangle({ width: 7, height: 9 });
 // var square = new Rectangle();
 // console.log(`${square.width} - ${square.height}`);
+
+
+//use statis in class
+// class Transform {
+//     constructor(value) {
+//         this.value = value;
+//     }
+
+//     static toUpper(val){
+//         return val.toUpperCase();
+//     }
+
+//     static toLower(val){
+//         return val.toLowerCase();
+//     }
+
+//     showName() {
+//         console.log(this.value);
+//     }
+// }
+
+// var name = 'Nguyen Linh';
+// var upperName = Transform.toUpper(name);
+// var lowername = Transform.toLower(name);
+// console.log(`Upper: ${upperName}; Lower: ${lowername}`);
+
+
+var name = 'Nguyen Linh';
+function Transform(val){
+    this.val = val;
+    this.showVal = () => {console.log(this.val)};
+}
+
+Transform.toPrefix = (val) => `Transform: ${val}`;
+let prefixName = Transform.toPrefix(name);
+console.log(prefixName);
+
+let transform = new Transform(name);
+transform.showVal();
+
+// Object.defineProperty(Transform, 'toUpper', {
+//     value: function toUpper(val) {
+//         return val.toUpperCase();
+//     }
+// });
+
+// Object.defineProperty(Transform.prototype, 'toLower', {
+//     value: function toUpper(val) {
+//         return val.toLowerCase();
+//     }
+// });
+
+// var upper  =  Transform.toLower(name);
+// var lower = new Transform().toLower(name)
+// console.log(`Upper: ${upper}; Lower: ${lower}`);
