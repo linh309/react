@@ -1546,45 +1546,57 @@ import './index.css';
 
 
 
-function get(url) {
-    //Create and return a promise
-    return new Promise(function(resolve, reject) {
-        var req = new XMLHttpRequest();
-        req.open("GET", url);
+// function get(url) {
+//     //Create and return a promise
+//     return new Promise(function(resolve, reject) {
+//         var req = new XMLHttpRequest();
+//         req.open("GET", url);
 
-        req.onload = function (){
-            if (req.status==200) {
-                //call solve function
-                resolve(req.response);
-            }
-            else {
-                reject(req.statusText);
-            }
-        };
+//         req.onload = function (){
+//             if (req.status==200) {
+//                 //call solve function
+//                 resolve(req.response);
+//             }
+//             else {
+//                 reject(req.statusText);
+//             }
+//         };
 
-        //handle error
-        req.onerror = () => {
-            reject("Network Error");
-        };
+//         //handle error
+//         req.onerror = () => {
+//             reject("Network Error");
+//         };
 
-        req.send();
-    });
+//         req.send();
+//     });
+// }
+
+// var url = 'https://api.github.com/users/linh309';
+// get(url).then(function(response){
+//     var obj = JSON.parse(response);
+//     console.log("Success, this response will be parsed as JSON and used to as data to next process", response);
+//     console.log(`Your ID is ${obj.id}`);
+
+//     return obj;
+// }, function (response){
+//     console.log(response);
+// })
+// .then(function(preResponse) {
+//     return preResponse.avatar_url
+// })
+// .then(function(data){
+//     var img = document.getElementById("imgAvatar");
+//     //img.src=data;
+// });
+
+
+
+function showName(){
+    var name = "Linh";
+    if (name!==undefined)    {
+        var name = 10;
+    }
+    console.log(name);
 }
 
-var url = 'https://api.github.com/users/linh309';
-get(url).then(function(response){
-    var obj = JSON.parse(response);
-    console.log("Success, this response will be parsed as JSON and used to as data to next process", response);
-    console.log(`Your ID is ${obj.id}`);
-
-    return obj;
-}, function (response){
-    console.log(response);
-})
-.then(function(preResponse) {
-    return preResponse.avatar_url
-})
-.then(function(data){
-    var img = document.getElementById("imgAvatar");
-    //img.src=data;
-});
+showName();
