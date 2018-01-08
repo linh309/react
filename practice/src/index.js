@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
 
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
@@ -1548,6 +1548,7 @@ import './index.css';
 
 // function get(url) {
 //     //Create and return a promise
+<<<<<<< HEAD
 //     return new Promise(function(resolve, reject) {
 //         var req = new XMLHttpRequest();
 //         req.open("GET", url);
@@ -1571,6 +1572,37 @@ import './index.css';
 //     });
 // }
 
+=======
+//     return new Promise(function(resolve, reject) {               
+//         setTimeout(function (){
+//             let req = new XMLHttpRequest();
+//             req.open("GET", url);
+    
+//             req.onload = function (){
+//                 if (req.status==200) {
+//                     //call solve function
+//                     resolve(req.response);
+//                 }
+//                 else {
+//                     reject(req.statusText);
+//                 }
+//             };
+
+//             req.onerror = () => {
+//                 reject("Network Error");
+//             };
+
+//             req.send();
+//         },5000);        
+//     });
+// }
+
+
+
+// let count = 0;
+// let counter = setInterval(()=>{console.log(++count)},1000);
+
+>>>>>>> dd4ae5a37a43951a9f656fe3141f93159f61b787
 // var url = 'https://api.github.com/users/linh309';
 // get(url).then(function(response){
 //     var obj = JSON.parse(response);
@@ -1586,6 +1618,7 @@ import './index.css';
 // })
 // .then(function(data){
 //     var img = document.getElementById("imgAvatar");
+<<<<<<< HEAD
 //     //img.src=data;
 // });
 
@@ -1600,3 +1633,58 @@ function showName(){
 }
 
 showName();
+=======
+//     img.src=data;
+//     clearInterval(counter);
+// })
+
+
+
+// var a  = 100;
+// console.log(a);
+// var a  = 1200;
+// console.log(`a = ${a}`);
+
+// var a = 10;
+// function showName(){    
+//     if (a >= 10){
+//         let a = 20;
+//         console.log(`let a = 20;: ${a}`)
+//     }
+
+//     if (a >= 20){
+//         let a = 30;
+//         console.log(`let a = 30: ${a}`)
+//     }    
+//     console.log(`a inside function: ${a}`)
+// }
+
+// showName();
+// console.log(`a outside function: ${a}`)
+
+// var age = 100;
+// if(age > 12) {
+//   let dogYears = age * 7;
+//   console.log(`You are ${dogYears} dog years old!`);
+// }
+
+// console.log(dogYears);
+
+
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }    
+}
+
+// class Rectangle {
+//     constructor(height, width) {
+//       this.height = height;
+//       this.width = width;
+//     }
+//   }
+
+let square = new Rectangle(5,5);
+console.log(`Width: ${square.width}, left: ${square.height}`);
+>>>>>>> dd4ae5a37a43951a9f656fe3141f93159f61b787
