@@ -1622,15 +1622,15 @@
 
 
 
-function showName(){
-    var name = "Linh";
-    if (name!==undefined)    {
-        var name = 10;
-    }
-    console.log(name);
-}
+// function showName(){
+//     var name = "Linh";
+//     if (name!==undefined)    {
+//         var name = 10;
+//     }
+//     console.log(name);
+// }
 
-showName();
+// showName();
 //     img.src=data;
 //     clearInterval(counter);
 // })
@@ -1667,20 +1667,56 @@ showName();
 
 // console.log(dogYears);
 
-
-class Rectangle {
-    constructor(height, width) {
-        this.height = height;
-        this.width = width;
-    }    
-}
+// var dimension = {
+//     width: 5,
+//     height: 5
+// };
 
 // class Rectangle {
-//     constructor(height, width) {
-//       this.height = height;
-//       this.width = width;
-//     }
-//   }
+//     constructor(props) {
+//         this.height = props.width;
+//         this.width = props.height;
+//     }    
 
-let square = new Rectangle(5,5);
-console.log(`Width: ${square.width}, left: ${square.height}`);
+//     get area(){
+//         return this.calcArea();
+//     }
+
+//     //method
+//     calcArea(){
+//         return this.width * this.height;
+//     }
+// }
+
+// let square = new Rectangle({width: 7, height: 9});
+// let area = square.area;
+// var areaFn = square.calcArea();
+// console.log(`area is: ${area}; calcArea fn = ${areaFn}`);
+
+
+// var createClassFromConstructor = function (){
+//     return function (constructor){
+//         return constructor;
+//     }
+// }
+
+// // function createClassFromConstructor(constructor) {
+// //     return function (){
+// //         return constructor;
+// //     }    
+// // }
+
+// var Rectangle = function (){
+//     //function Rectangle(props) {
+//         function Rectangle1() {
+//         this.height = 1;//props.height;
+//         this.width = 2; //props.width;
+//     }
+//     // createClassFromConstructor(Rectangle);
+//     return Rectangle1;
+// }
+
+// //var square = new Rectangle({ width: 7, height: 9 })();
+// //var square = new Rectangle({ width: 7, height: 9 });
+// var square = new Rectangle();
+// console.log(`${square.width} - ${square.height}`);
