@@ -1548,7 +1548,7 @@
 
 // function get(url) {
 //     //Create and return a promise
-<<<<<<< HEAD
+
 //     return new Promise(function(resolve, reject) {
 //         var req = new XMLHttpRequest();
 //         req.open("GET", url);
@@ -1572,7 +1572,7 @@
 //     });
 // }
 
-=======
+
 //     return new Promise(function(resolve, reject) {               
 //         setTimeout(function (){
 //             let req = new XMLHttpRequest();
@@ -1602,7 +1602,6 @@
 // let count = 0;
 // let counter = setInterval(()=>{console.log(++count)},1000);
 
->>>>>>> dd4ae5a37a43951a9f656fe3141f93159f61b787
 // var url = 'https://api.github.com/users/linh309';
 // get(url).then(function(response){
 //     var obj = JSON.parse(response);
@@ -1618,7 +1617,6 @@
 // })
 // .then(function(data){
 //     var img = document.getElementById("imgAvatar");
-<<<<<<< HEAD
 //     //img.src=data;
 // });
 
@@ -1633,7 +1631,6 @@ function showName(){
 }
 
 showName();
-=======
 //     img.src=data;
 //     clearInterval(counter);
 // })
@@ -1687,4 +1684,3 @@ class Rectangle {
 
 let square = new Rectangle(5,5);
 console.log(`Width: ${square.width}, left: ${square.height}`);
->>>>>>> dd4ae5a37a43951a9f656fe3141f93159f61b787
