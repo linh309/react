@@ -1,31 +1,24 @@
+import {createStore} from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import todoApp from './reducers';
 
-let now = new Date();
-const DateEx = <p>Now is {now.toLocaleDateString()}</p>;
-const dtEx = DateEx;
+//Import function
+import {
+    addTodo,
+    toggleTodo,
+    setVisibilityFilter,
+    VisibilityFilters
+} from './actions';
 
-const exDt = now;
+let store = createStore(todoApp);
 
-function Welcome(props){
-    if (props.isLogin){
-        let now = new Date();
-        let value = '<></a>dsadas><">"';
-        //return <p>You logged at {now.toLocaleDateString()}</p>;
-        return <p>{value}</p>;
-    }
-    else {
-        return <p>please login first</p>;
-    }
-}
+const unsubcribe = store.subscribe(()=> {
+    console.log(store.getState());
+}) ;
 
-const welcome = Welcome(false);
-debugger;
-ReactDOM.render(<Welcome isLogin={true} />, document.getElementById("root"));
-
-
-// var tick = setInterval(()=>{
-//     let now = new Date();
-//     ReactDOM.render(<p>Now is {now.toLocaleTimeString()}</p>, document.getElementById("root"));    
-// },1000);
+//Dispatch action
+store.dispatch(addTodo('learn about action 1'));
+store.dispatch(addTodo('learn about action 2'));
+store.dispatch(toggleTodo(1));
+store.dispatch(addTodo('learn about action 3'));
