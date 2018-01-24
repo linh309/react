@@ -1,8 +1,11 @@
 import {createStore} from 'redux';
 import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import todoApp from './reducers';
+
 
 //Import function
 import {
@@ -135,4 +138,56 @@ const mapDispatchToProps = dispatch => {
   
 
 
+
+
+  let AddTodo = ({ dispatch }) => {
+    let input
+  
+    return (
+      <div>
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            if (!input.value.trim()) {
+              return
+            }
+            dispatch(addTodo(input.value))
+            input.value = ''
+          }}
+        >
+          <input
+            ref={node => {
+              input = node
+            }}
+          />
+          <button type="submit">
+            Add Todo
+          </button>
+        </form>
+      </div>
+    )
+  }
+  AddTodo = connect()(AddTodo)
+
+  const App = () => (
+    <div>
+      <AddTodo />
+      <VisibleTodoList />
+      <Footer />
+    </div>
+  )
+
+  let store = createStore(todoApp);
+
+
+  
+
+
+
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
   
