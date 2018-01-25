@@ -9,186 +9,77 @@ import todoApp from './reducers';
 
 //Import function
 import {
+    ADD_TODO,
     addTodo,
     toggleTodo,
     setVisibilityFilter,
     VisibilityFilters
 } from './actions';
 
-// let store = createStore(todoApp);
+//Create textbox and button for AddTodo
+// let AddTodo = ({ dispatch }) => {
+//     let input;
+//     return (
+//         <form onSubmit={e=>{
+//                 e.preventDefault();                
+//                 dispatch({type: ADD_TODO, text: input.value});
+//                 input.value='';
+//             }}
+//         >
+//             <input ref={node=>{input = node}} />
+//             <button type='submit'>Add Todo</button>
+//         </form>
+//     );
+// };
+// AddTodo = connect()(AddTodo);
 
-// const unsubcribe = store.subscribe(()=> {
-//     console.log(store.getState());
-// }) ;
-
-// //Dispatch action
-// store.dispatch(addTodo('learn about action 1'));
-// store.dispatch(addTodo('learn about action 2'));
-// store.dispatch(toggleTodo(1));
-// store.dispatch(addTodo('learn about action 3'));
-
-
-
-
-const Todo = ({ onClick, completed, text }) => (
-    <li
-      onClick={onClick}
-      style={ {
-        textDecoration: completed ? 'line-through' : 'none'
-      }}
-    >
-      {text}
-    </li>
-)
-
-const TodoList = ({ todos, onTodoClick }) => (
-    <ul>
-      {todos.map((todo, index) => (
-        <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />
-      ))}
-    </ul>
-  )
-
-const Link = ({ active, children, onClick }) => {
-    if (active) {
-        return <span>{children}</span>
-    }
-
+let AddTodo = ({dispatch}) => {
+    let input;
     return (
-        <a
-        href=""
-        onClick={e => {
-            e.preventDefault()
-            onClick()
-        }}
-        >
-        {children}
-        </a>
-    )
-}
-
-const mapStateToPropsFilterLink = (state, ownProps) => {
-    return {
-      active: ownProps.filter === state.visibilityFilter
-    }
-  }
-
-  const mapDispatchToPropsFilterLink = (dispatch, ownProps) => {
-    return {
-      onClick: () => {
-        dispatch(setVisibilityFilter(ownProps.filter))
-      }
-    }
-  }
-
-  const FilterLink = connect(
-    mapStateToPropsFilterLink,
-    mapDispatchToPropsFilterLink
-  )(Link)
-
-const Footer = () => (
-    <p>
-      Show:
-      {' '}
-      <FilterLink filter="SHOW_ALL">
-        All
-      </FilterLink>
-      {', '}
-      <FilterLink filter="SHOW_ACTIVE">
-        Active
-      </FilterLink>
-      {', '}
-      <FilterLink filter="SHOW_COMPLETED">
-        Completed
-      </FilterLink>
-    </p>
-)  
-
-
-const getVisibleTodos = (todos, filter) => {
-    switch (filter) {
-      case 'SHOW_COMPLETED':
-        return todos.filter(t => t.completed)
-      case 'SHOW_ACTIVE':
-        return todos.filter(t => !t.completed)
-      case 'SHOW_ALL':
-      default:
-        return todos
-    }
-  }
-  
-const mapStateToProps = state => {
-    return {
-        todos: getVisibleTodos(state.todos, state.visibilityFilter)
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-      onTodoClick: id => {
-        dispatch(toggleTodo(id))
-      }
-    }
-  }
-
-  const VisibleTodoList = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TodoList)
-  
-
-
-
-
-  let AddTodo = ({ dispatch }) => {
-    let input
-  
-    return (
-      <div>
-        <form
-          onSubmit={e => {
-            e.preventDefault()
-            if (!input.value.trim()) {
-              return
-            }
-            dispatch(addTodo(input.value))
-            input.value = ''
-          }}
-        >
-          <input
-            ref={node => {
-              input = node
+        <form onSubmit={e=>{
+                e.preventDefault();                
+                dispatch({type: ADD_TODO, text: input.value});
+                input.value='';
             }}
-          />
-          <button type="submit">
-            Add Todo
-          </button>
+        >
+            <input ref={node=>{input = node}} />
+            <button type='submit'>Add Todo</button>
         </form>
-      </div>
-    )
-  }
-  AddTodo = connect()(AddTodo)
+    );
+};
 
-  const App = () => (
-    <div>
-      <AddTodo />
-      <VisibleTodoList />
-      <Footer />
-    </div>
-  )
+AddTodo = connect()(AddTodo);
 
-  let store = createStore(todoApp);
+let TodoList = ({todos}) => {    
+    <ul>        
+        {todos.map((todo, index) => (           
+            <li key={index}>{todo}</li>
+        ))}
+    </ul>
+}
+const VisibleTodoList = connect(
+    (state) => {
+        return{
+            todos: state.todos
+        }
+    }
+)(TodoList);
 
 
-  
+let store = createStore(todoApp);
 
+const App = () => {
+    return (
+        <div>
+            <AddTodo />
+            <VisibleTodoList />
+        </div>
+    );    
+};
 
-
-  render(
+render(
     <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById('root')
   )
-
-  //commit final code
