@@ -13,7 +13,8 @@ import {
     addTodo,
     toggleTodo,
     setVisibilityFilter,
-    VisibilityFilters
+    VisibilityFilters,
+    SET_VISIBILITY_FILTER
 } from './actions';
 
 //Create textbox and button for AddTodo
@@ -37,7 +38,10 @@ let AddTodo = ({dispatch}) => {
     let input;
     return (
         <form onSubmit={e=>{
-                e.preventDefault();                
+                e.preventDefault();          
+                if (!input.value.trim()) {
+                  return false;
+                }
                 dispatch({type: ADD_TODO, text: input.value});
                 input.value='';
             }}
@@ -47,33 +51,97 @@ let AddTodo = ({dispatch}) => {
         </form>
     );
 };
-
 AddTodo = connect()(AddTodo);
 
-// let TodoList = ({todos}) => {
-//     <ul>
-//         {todos.map((todo, index) => (           
-//             <li key={index}>{todo}</li>
-//         ))}
-//     </ul>
-// }
+const Todo = ({text, completed, onClick}) => (
+  <li 
+    style={{textDecoration: completed ? "line-through": "none"}} 
+    onClick={onClick}>    
+    {text}
+  </li>
+)
 
-const TodoList = ({ todos, onTodoClick }) => (
+const TodoList = ({ todos, clickTodo }) => (
     <ul>
-      {todos.map((todo, index) => (
-        <li key={index}>{todo.text}</li>
+      {todos.map((todo, index) => (        
+        <Todo key={index} {...todo} onClick={()=> clickTodo(index)}  />
       ))}
     </ul>
-  )
+)
+
+function getVisibleTodos(todos, filter) {
+  switch(filter) {
+    case 'SHOW_COMPLETED':
+      return todos.filter(t=>t.completed);
+    case 'SHOW_ALL':
+    default:
+      return todos;    
+  }
+}
+
+const mapStateToProp = state => {
+  return {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+}
+
+const mapDispatchToProp = dispatch => {
+  return {
+    clickTodo: id => {
+      dispatch(toggleTodo(id));
+    }    
+  }
+}
 
 const VisibleTodoList = connect(
-    (state) => {
-        return{
-            todos: state.todos
-        }
-    }
+  mapStateToProp,
+  mapDispatchToProp
 )(TodoList);
 
+let Link = ({onClick, text}) => (
+  <a 
+    href=""
+    onClick={(e) =>{
+      e.preventDefault();
+      onClick();
+    }}>    
+    {text}
+  </a>
+);
+
+const mapStateToPropLink = (state, ownProps) => {
+  return {
+    active: state.visibilityFilter == ownProps.filter
+  };
+}
+
+const mapStateToDispatchLink = (dispatch, ownProps) => {  
+  return {
+    onClick: () => {      
+      dispatch(setVisibilityFilter(ownProps.filter));
+    }
+  };
+}
+
+const FilterLink = connect(
+  mapStateToPropLink,
+  mapStateToDispatchLink
+)(Link);
+
+
+// const Footer = () => (
+//   <p>
+//     <a
+//       href=""
+//       onClick={e=>{
+//         e.preventDefault();
+
+//       }}
+//     >
+//     All
+//     </a>
+//   </p>
+// )
 
 let store = createStore(todoApp);
 
@@ -82,6 +150,8 @@ const App = () => {
         <div>
             <AddTodo />
             <VisibleTodoList />
+            {/* <FilterLink text='Show completed1' filter="SHOW_COMPLETED" /> */}
+            <FilterLink text="Completed" filter="SHOW_COMPLETED">Completed</FilterLink>
         </div>
     );    
 };
@@ -91,4 +161,4 @@ render(
       <App />
     </Provider>,
     document.getElementById('root')
-  )
+)
