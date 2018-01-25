@@ -50,13 +50,22 @@ let AddTodo = ({dispatch}) => {
 
 AddTodo = connect()(AddTodo);
 
-let TodoList = ({todos}) => {    
-    <ul>        
-        {todos.map((todo, index) => (           
-            <li key={index}>{todo}</li>
-        ))}
+// let TodoList = ({todos}) => {
+//     <ul>
+//         {todos.map((todo, index) => (           
+//             <li key={index}>{todo}</li>
+//         ))}
+//     </ul>
+// }
+
+const TodoList = ({ todos, onTodoClick }) => (
+    <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>{todo.text}</li>
+      ))}
     </ul>
-}
+  )
+
 const VisibleTodoList = connect(
     (state) => {
         return{
